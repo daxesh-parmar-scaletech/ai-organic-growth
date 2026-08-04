@@ -1,0 +1,111 @@
+import { useMemo, useState } from "react";
+import { Sprout } from "lucide-react";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import { PageLoader } from "@/components/common/PageLoader";
+import { QueryErrorFallback } from "@/components/common/QueryErrorFallback";
+import { Button } from "@/components/ui/button";
+import { AddProjectCard } from "@/features/projects/components/AddProjectCard";
+import { ConnectConsentDialog } from "@/features/projects/components/ConnectConsentDialog";
+import { ConnectingOverlay } from "@/features/projects/components/ConnectingOverlay";
+import { ProjectCard } from "@/features/projects/components/ProjectCard";
+import { useConnectProject, useProjects } from "@/hooks/queries/useProjects";
+import { useAuth } from "@/hooks/useAuth";
+import { useGoogleAccountConnect } from "@/hooks/useGoogleAccountConnect";
+import { USE_MOCKS } from "@/lib/mockDelay";
+import type { Project } from "@/types/project";
+
+export function ProjectsPage() {
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+  const { data: projects, isLoading, isError, refetch } = useProjects();
+  const connectMutation = useConnectProject();
+
+  const [connectTarget, setConnectTarget] = useState<Project | null>(null);
+  const [isConnecting, setIsConnecting] = useState(false);
+
+  const { connect: connectGoogleAccount, isConnecting: isConnectingGoogleAccount } = useGoogleAccountConnect({
+    onSuccess: () => {
+      toast.success("Google account connected.");
+      refetch();
+    },
+    onError: (message) => toast.error(message),
+  });
+
+  const connectedCount = useMemo(() => projects?.filter((p) => p.connected).length ?? 0, [projects]);
+
+  const handleSignOut = () => {
+    signOut();
+    navigate("/login");
+  };
+
+  const handleAddProperty = () => {
+    if (USE_MOCKS) {
+      toast.info("Adding new properties is coming soon.");
+      return;
+    }
+    connectGoogleAccount();
+  };
+
+  const handleAllowConnect = () => {
+    if (!connectTarget) return;
+    setIsConnecting(true);
+    connectMutation.mutate(connectTarget.id, {
+      onSuccess: (project) => navigate(`/app/${project.id}/dashboard`),
+      onSettled: () => {
+        setIsConnecting(false);
+        setConnectTarget(null);
+      },
+    });
+  };
+
+  return (
+    <div className="min-h-screen">
+      <div className="flex h-16 items-center justify-between border-b border-border bg-card px-7">
+        <div className="flex items-center gap-2.5">
+          <span className="flex size-8 items-center justify-center rounded-[9px] bg-primary">
+            <Sprout className="size-[18px] text-primary-foreground" />
+          </span>
+          <span className="text-[17px] font-extrabold tracking-tight">Organiq</span>
+        </div>
+        <div className="flex items-center gap-3.5">
+          <span className="text-[13px] text-muted-foreground">{user?.email}</span>
+          <span className="flex size-[34px] items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+            {user?.name?.charAt(0) ?? "?"}
+          </span>
+          <Button variant="outline" size="sm" onClick={handleSignOut}>
+            Sign out
+          </Button>
+        </div>
+      </div>
+
+      <div className="px-8 py-8">
+        <div className="mb-6">
+          <h1 className="mb-2 text-[26px] font-extrabold tracking-tight">Your Projects</h1>
+          <p className="text-[15px] text-muted-foreground">
+            {connectedCount} of {projects?.length ?? 0} properties connected from your Google Search Console
+            account.
+          </p>
+        </div>
+
+        {isLoading ? <PageLoader label="Loading your projects…" /> : null}
+        {isError ? <QueryErrorFallback message="We couldn't load your projects." onRetry={() => refetch()} /> : null}
+        {projects ? (
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {projects.map((project) => (
+              <ProjectCard key={project.id} project={project} onConnect={setConnectTarget} />
+            ))}
+            <AddProjectCard onClick={handleAddProperty} isConnecting={isConnectingGoogleAccount} />
+          </div>
+        ) : null}
+      </div>
+
+      <ConnectConsentDialog
+        project={isConnecting ? null : connectTarget}
+        onCancel={() => setConnectTarget(null)}
+        onAllow={handleAllowConnect}
+      />
+      {isConnecting && connectTarget ? <ConnectingOverlay projectName={connectTarget.name} /> : null}
+    </div>
+  );
+}

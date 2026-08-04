@@ -1,0 +1,55 @@
+import type { Project } from "@/types/project";
+
+export const projectsMock: Project[] = [
+  {
+    id: "brewhaus",
+    name: "Brewhaus Coffee",
+    domain: "brewhaus.coffee",
+    letter: "B",
+    color: "#8A5A34",
+    connected: true,
+    metrics: { clicks: "18.2K", impressions: "742K", avgPosition: "12.8" },
+  },
+  {
+    id: "shopwave",
+    name: "ShopWave",
+    domain: "shopwave.io",
+    letter: "S",
+    color: "#12A150",
+    connected: true,
+    metrics: { clicks: "48.2K", impressions: "1.9M", avgPosition: "14.3" },
+  },
+  {
+    id: "lumen",
+    name: "Lumen Labs",
+    domain: "lumenlabs.co",
+    letter: "L",
+    color: "#5B5BD6",
+    connected: true,
+    metrics: { clicks: "12.7K", impressions: "640K", avgPosition: "21.8" },
+  },
+  {
+    id: "northpeak",
+    name: "North Peak Travel",
+    domain: "northpeak.travel",
+    letter: "N",
+    color: "#E0900B",
+    connected: false,
+  },
+  {
+    id: "meadow",
+    name: "Meadow Bio",
+    domain: "meadow.bio",
+    letter: "M",
+    color: "#0E9AA7",
+    connected: false,
+  },
+  {
+    id: "craftly",
+    name: "Craftly",
+    domain: "craftly.store",
+    letter: "C",
+    color: "#7C3AED",
+    connected: false,
+  },
+];

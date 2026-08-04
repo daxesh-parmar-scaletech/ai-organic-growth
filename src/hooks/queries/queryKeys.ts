@@ -1,0 +1,15 @@
+/** Shared query-key factory so cache invalidation stays consistent across hooks. */
+export const queryKeys = {
+  projects: () => ["projects"] as const,
+  project: (projectId: string) => ["projects", projectId] as const,
+  keywords: (projectId: string) => ["projects", projectId, "keywords"] as const,
+  pages: (projectId: string) => ["projects", projectId, "pages"] as const,
+  pagesStatus: (projectId: string) => ["projects", projectId, "pages-status"] as const,
+  recommendations: (projectId: string) => ["projects", projectId, "recommendations"] as const,
+  seoAnalysis: (projectId: string) => ["projects", projectId, "seo-analysis"] as const,
+  dashboardMetrics: (projectId: string) => ["projects", projectId, "metrics"] as const,
+  dashboardTrend: (projectId: string) => ["projects", projectId, "trend"] as const,
+  dashboardGeo: (projectId: string) => ["projects", projectId, "geo"] as const,
+  gscSnapshot: (projectId: string) => ["projects", projectId, "gsc-snapshot"] as const,
+  contentGeneration: (projectId: string) => ["projects", projectId, "content-generation"] as const,
+};

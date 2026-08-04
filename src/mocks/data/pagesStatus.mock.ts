@@ -1,0 +1,48 @@
+import type { PageStatus } from "@/types/pages";
+
+export const pagesStatusMock: PageStatus[] = [
+  {
+    url: "https://example.com/",
+    indexed: true,
+    coverageState: "Submitted and indexed",
+    lastCheckedAt: "2026-07-19T08:00:00.000Z",
+    rank: 4,
+    rankKeyword: "organic growth tool",
+    previousRank: 7,
+    rankDelta: 3,
+    previousCapturedAt: "2026-07-12T08:00:00.000Z",
+  },
+  {
+    url: "https://example.com/blog/seo-checklist",
+    indexed: true,
+    coverageState: "Submitted and indexed",
+    lastCheckedAt: "2026-07-19T08:00:00.000Z",
+    rank: 18,
+    rankKeyword: "seo checklist 2026",
+    previousRank: 15,
+    rankDelta: -3,
+    previousCapturedAt: "2026-07-12T08:00:00.000Z",
+  },
+  {
+    url: "https://example.com/pricing",
+    indexed: false,
+    coverageState: "Crawled - currently not indexed",
+    lastCheckedAt: "2026-07-19T08:00:00.000Z",
+    rank: null,
+    rankKeyword: null,
+    previousRank: null,
+    rankDelta: null,
+    previousCapturedAt: null,
+  },
+  {
+    url: "https://example.com/new-landing-page",
+    indexed: false,
+    coverageState: "Discovered - currently not indexed",
+    lastCheckedAt: null,
+    rank: null,
+    rankKeyword: null,
+    previousRank: null,
+    rankDelta: null,
+    previousCapturedAt: null,
+  },
+];
