@@ -1,9 +1,12 @@
 import { Bot, Check } from "lucide-react";
+import { Markdown } from "@/components/common/Markdown";
+import { useTypewriter } from "@/features/ai-chat/hooks/useTypewriter";
 import { cn } from "@/lib/utils";
 import type { ChatMessage } from "@/types/chat";
 
-export function ChatMessageBubble({ message }: { message: ChatMessage }) {
+const ChatMessageBubble = ({ message }: { message: ChatMessage }) => {
   const isAi = message.role === "ai";
+  const { displayedText, isTyping } = useTypewriter(message.text, isAi);
 
   return (
     <div className={cn("flex items-start gap-2.5", isAi ? "" : "flex-row-reverse")}>
@@ -14,12 +17,16 @@ export function ChatMessageBubble({ message }: { message: ChatMessage }) {
       ) : null}
       <div
         className={cn(
-          "max-w-[80%] rounded-2xl px-4 py-3.5 text-sm leading-relaxed whitespace-pre-wrap",
-          isAi ? "rounded-tl-sm bg-muted text-foreground" : "rounded-tr-sm bg-primary text-primary-foreground",
+          "max-w-[80%] rounded-2xl px-4 py-3.5 text-sm leading-relaxed",
+          isAi ? "rounded-tl-sm bg-muted text-foreground" : "rounded-tr-sm bg-primary text-primary-foreground whitespace-pre-wrap",
         )}
       >
-        <div>{message.text}</div>
-        {message.actions && message.actions.length > 0 ? (
+        {isAi ? (
+          <Markdown text={displayedText} showCursor={isTyping} />
+        ) : (
+          <div>{message.text}</div>
+        )}
+        {message.actions && message.actions.length > 0 && !isTyping ? (
           <div className="mt-3 flex flex-col gap-2 border-t border-black/10 pt-3">
             {message.actions.map((action) => (
               <div key={action} className="flex items-start gap-2">
@@ -32,4 +39,6 @@ export function ChatMessageBubble({ message }: { message: ChatMessage }) {
       </div>
     </div>
   );
-}
+};
+
+export default ChatMessageBubble;

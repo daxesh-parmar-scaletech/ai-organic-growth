@@ -30,7 +30,7 @@ export function ConnectConsentDialog({ project, onCancel, onAllow }: ConnectCons
             <span className="flex size-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
               A
             </span>
-            <span className="text-[13px] text-muted-foreground">alex@brewhaus.coffee</span>
+            <span className="text-[13px] text-muted-foreground">admin@gmail.com</span>
           </div>
         </div>
         <div className="px-7 py-5.5">

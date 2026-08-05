@@ -16,7 +16,7 @@ export interface AuthContextValue {
 
 export const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
-const MOCK_USER: AuthUser = { name: 'Admin', email: 'alex@brewhaus.coffee' };
+const MOCK_USER: AuthUser = { name: 'Admin', email: 'admin@gmail.com' };
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(checkLogin);

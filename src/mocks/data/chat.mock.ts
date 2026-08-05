@@ -1,17 +1,17 @@
 import type { ChatMessage, ChatSuggestion } from "@/types/chat";
 
-export const initialChatMessageMock: ChatMessage = {
-  id: "msg-welcome",
-  role: "ai",
-  text: "Hi Alex — I'm Organiq AI, your SEO assistant. I'm looking at live Search Console data for your site. Ask me anything, or tap a suggestion below to get started.",
-};
+export function getInitialChatMessage(name: string): ChatMessage {
+  return {
+    id: "msg-welcome",
+    role: "ai",
+    text: `Hi ${name} — I'm **Organiq AI**, your SEO assistant. I'm connected to live Search Console data for your site and can help you:\n- Diagnose **indexing & crawl** issues\n- Find **keyword** opportunities close to page one\n- Track **Core Web Vitals** and site speed\n- Compare you to **competitors**\n- Explain **traffic** changes\n\nAsk me anything, or tap a suggestion below to get started.`,
+  };
+}
 
 export const chatSuggestionsMock: ChatSuggestion[] = [
   { id: "sugg-indexing", label: "Why aren't my pages indexed?", question: "Why aren't my pages indexed?" },
   { id: "sugg-keywords", label: "Which keywords are close to page one?", question: "Which keywords are close to page one?" },
   { id: "sugg-speed", label: "How's my site speed?", question: "How's my site speed?" },
-  { id: "sugg-competitors", label: "How do I compare to competitors?", question: "How do I compare to competitors?" },
-  { id: "sugg-traffic", label: "Why did traffic change?", question: "Why did traffic change?" },
 ];
 
 interface AiReply {
