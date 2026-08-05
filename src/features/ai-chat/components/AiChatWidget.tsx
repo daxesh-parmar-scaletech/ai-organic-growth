@@ -4,8 +4,9 @@ import type { PointerEvent as ReactPointerEvent } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { ChatComposer } from "@/features/ai-chat/components/ChatComposer";
 import { ChatMessageList } from "@/features/ai-chat/components/ChatMessageList";
+import { useAuth } from "@/hooks/useAuth";
 import { useSendChatMessage } from "@/hooks/queries/useChat";
-import { initialChatMessageMock } from "@/mocks/data/chat.mock";
+import { getInitialChatMessage } from "@/mocks/data/chat.mock";
 import type { ChatMessage } from "@/types/chat";
 import type { Project } from "@/types/project";
 
@@ -40,9 +41,10 @@ function getInitialPosition(): Position {
 }
 
 export function AiChatWidget({ project }: AiChatWidgetProps) {
+  const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const sendMessage = useSendChatMessage();
-  const [messages, setMessages] = useState<ChatMessage[]>([initialChatMessageMock]);
+  const [messages, setMessages] = useState<ChatMessage[]>([getInitialChatMessage(user?.name ?? "there")]);
   const [draft, setDraft] = useState("");
   const [position, setPosition] = useState<Position>(getInitialPosition);
   const dragRef = useRef<{ startX: number; startY: number; originX: number; originY: number; dragged: boolean } | null>(null);
