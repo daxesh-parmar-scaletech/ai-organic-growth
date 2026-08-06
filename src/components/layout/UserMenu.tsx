@@ -14,7 +14,7 @@ export function UserMenu() {
   return (
     <div className="border-t border-border p-3">
       <div className="flex items-center gap-2.5 px-2 py-1.5">
-        <span className="flex size-8 items-center justify-center rounded-full bg-foreground text-xs font-bold text-background">
+        <span className="flex size-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-background">
           {user?.name?.charAt(0) ?? "?"}
         </span>
         <span className="min-w-0 flex-1">
@@ -25,7 +25,7 @@ export function UserMenu() {
           type="button"
           onClick={handleSignOut}
           title="Sign out"
-          className="rounded-md p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
+          className="cursor-pointer rounded-md p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
         >
           <LogOut className="size-4" />
         </button>

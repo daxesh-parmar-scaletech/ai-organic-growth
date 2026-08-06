@@ -23,7 +23,7 @@ export function GeoCountryList({ data, onSelect }: GeoCountryListProps) {
           >
             <span
               className="size-2.5 shrink-0 rounded-full"
-              style={{ backgroundColor: geo.belowAverageCtr ? "#E0900B" : "#12A150" }}
+              style={{ backgroundColor: geo.belowAverageCtr ? "#E0900B" : "#0B6B3C" }}
             />
             <div className="min-w-0 flex-1">
               <div className="mb-1 flex justify-between text-[13px]">
