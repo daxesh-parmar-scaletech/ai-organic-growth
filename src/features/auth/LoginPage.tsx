@@ -7,7 +7,7 @@ import { GoogleSignInButton } from '@/features/auth/components/GoogleSignInButto
 import { useAuth } from '@/hooks/useAuth';
 
 const HIGHLIGHTS = [
-  { label: 'Monitor', color: '#1FCB79' },
+  { label: 'Monitor', color: 'var(--brand-green-bright)' },
   { label: 'Diagnose', color: '#7C6BE8' },
   { label: 'Solve', color: '#F0A93B' },
   { label: 'Boost', color: '#5CA6E0' },
@@ -112,7 +112,7 @@ export function LoginPage() {
           </div>
           <h1 className="mb-5 text-[56px] leading-[1.03] font-extrabold tracking-tight">
             When Ads Say No,{' '}
-            <span className="bg-linear-to-r from-[#1FCB79] to-[#82DBB1] bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-brand-green-bright to-brand-green-tint bg-clip-text text-transparent">
               SEO Says Go.
             </span>
           </h1>
