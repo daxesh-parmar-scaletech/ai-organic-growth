@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Organiq — AI Organic Growth</title>
+    <meta
+      name="description"
+      content="Organiq helps businesses that cannot rely on paid advertising grow through AI-powered organic acquisition. One platform to monitor, diagnose and solve organic growth."
+    />
+    <meta name="theme-color" content="#0A0F0C" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Organiq — AI Organic Growth" />
+    <meta
+      property="og:description"
+      content="Not just another SEO tool — an AI agent that turns data into growth decisions."
+    />
+
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+
+  <body>
+    <a class="sr-only" href="#problem">Skip to content</a>
+
+    <!-- ===================================================================
+         Icon sprite — lucide-derived glyphs, referenced with <use href="#…">
+         =================================================================== -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol id="i-sprout" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3"
+          />
+          <path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4" />
+          <path d="M5 21h14" />
+        </g>
+      </symbol>
+
+      <symbol id="i-arrow-right" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </g>
+      </symbol>
+
+      <symbol id="i-arrow-down" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 5v14" />
+          <path d="m19 12-7 7-7-7" />
+        </g>
+      </symbol>
+
+      <symbol id="i-activity" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+        </g>
+      </symbol>
+
+      <symbol id="i-eye-off" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M10.73 5.08A10.4 10.4 0 0 1 12 5c4.5 0 8.3 2.9 9.9 7a12.3 12.3 0 0 1-1.7 3"
+          />
+          <path d="M14.08 14.16a3 3 0 0 1-4.24-4.24" />
+          <path d="M17.48 17.5A10.4 10.4 0 0 1 12 19c-4.5 0-8.3-2.9-9.9-7a12.4 12.4 0 0 1 4.4-5.1" />
+          <path d="m2 2 20 20" />
+        </g>
+      </symbol>
+
+      <symbol id="i-chart" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+          <path d="M18 17V9" />
+          <path d="M13 17V5" />
+          <path d="M8 17v-3" />
+        </g>
+      </symbol>
+
+      <symbol id="i-file-text" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+          <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+          <path d="M16 13H8" />
+          <path d="M16 17H8" />
+        </g>
+      </symbol>
+
+      <symbol id="i-target" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <circle cx="12" cy="12" r="5" />
+          <circle cx="12" cy="12" r="1.5" />
+        </g>
+      </symbol>
+
+      <symbol id="i-dollar" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="9.5" />
+          <path d="M15.5 8.5H10a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8.5" />
+          <path d="M12 6v12" />
+        </g>
+      </symbol>
+
+      <symbol id="i-monitor" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <path d="M8 21h8" />
+          <path d="M12 17v4" />
+        </g>
+      </symbol>
+
+      <symbol id="i-scan" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+          <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+          <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+          <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+          <circle cx="11.5" cy="11.5" r="3.5" />
+          <path d="m16 16-2-2" />
+        </g>
+      </symbol>
+
+      <symbol id="i-sparkles" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="m12 3 1.6 4.9a2 2 0 0 0 1.3 1.3L19.8 11l-4.9 1.6a2 2 0 0 0-1.3 1.3L12 19l-1.6-4.9a2 2 0 0 0-1.3-1.3L4.2 11l4.9-1.6a2 2 0 0 0 1.3-1.3Z"
+          />
+          <path d="M19 3v3" />
+          <path d="M20.5 4.5h-3" />
+        </g>
+      </symbol>
+
+      <symbol id="i-circle-x" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="9.5" />
+          <path d="m15 9-6 6" />
+          <path d="m9 9 6 6" />
+        </g>
+      </symbol>
+
+      <symbol id="i-ban" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="9.5" />
+          <path d="m5.3 5.3 13.4 13.4" />
+        </g>
+      </symbol>
+
+      <symbol id="i-trending" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M16 7h6v6" />
+          <path d="m22 7-8.5 8.5-5-5L2 17" />
+        </g>
+      </symbol>
+
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="11" cy="11" r="7.5" />
+          <path d="m21 21-4.6-4.6" />
+        </g>
+      </symbol>
+
+      <symbol id="i-zap" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M13 2 4.1 13.3a.7.7 0 0 0 .5 1.2H10l-1 7.5 8.9-11.3a.7.7 0 0 0-.5-1.2H12Z" />
+        </g>
+      </symbol>
+
+      <symbol id="i-x" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </g>
+      </symbol>
+
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M20 6 9 17l-5-5" />
+        </g>
+      </symbol>
+
+      <symbol id="i-link" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+        </g>
+      </symbol>
+
+      <symbol id="i-type" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M4 7V4h16v3" />
+          <path d="M9 20h6" />
+          <path d="M12 4v16" />
+        </g>
+      </symbol>
+
+      <symbol id="i-layers" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M12.8 2.2a2 2 0 0 0-1.6 0L2.6 6.1a1 1 0 0 0 0 1.8l8.6 3.9a2 2 0 0 0 1.6 0l8.6-3.9a1 1 0 0 0 0-1.8Z"
+          />
+          <path d="m6 11.3-3.4 1.6a1 1 0 0 0 0 1.8l8.6 3.9a2 2 0 0 0 1.6 0l8.6-3.9a1 1 0 0 0 0-1.8L18 11.3" />
+        </g>
+      </symbol>
+    </svg>
+
+    <!-- ===================================================================
+         Nav
+         =================================================================== -->
+    <header class="nav night" id="nav">
+      <div class="wrap nav__inner">
+        <a class="mark" href="#top" aria-label="Organiq home">
+          <span class="mark__glyph"><svg aria-hidden="true"><use href="#i-sprout" /></svg></span>
+          Organiq
+        </a>
+
+        <nav class="nav__links" aria-label="Sections">
+          <a class="nav__link" href="#problem">Problem</a>
+          <a class="nav__link" href="#solution">Solution</a>
+          <a class="nav__link" href="#how">How it works</a>
+          <a class="nav__link" href="#features">Features</a>
+        </nav>
+
+        <!-- data-demo: opens the #demo dialog (assets/main.js). The href is the
+             no-JS fallback — it reveals the same form inline via :target. -->
+        <a class="btn btn--primary btn--sm nav__cta" data-demo href="#demo">
+          Book a demo
+          <svg aria-hidden="true"><use href="#i-arrow-right" /></svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- ===================================================================
+         Hero
+         =================================================================== -->
+    <main id="top">
+      <section class="hero night">
+        <div class="hero__glow" aria-hidden="true"></div>
+        <div class="hero__grid" aria-hidden="true"></div>
+
+        <div class="wrap hero__inner">
+          <div>
+            <span class="eyebrow rise" style="--d: 0.05s">Intrapreneur Challenge</span>
+
+            <h1 class="rise" style="--d: 0.14s">
+              Organic <span class="grad">Growth</span>,<br />
+              solved by AI
+            </h1>
+
+            <p class="lede rise" style="--d: 0.24s">
+              Helping businesses that cannot rely on paid advertising grow through
+              <b>AI-powered organic acquisition</b>. Enter a URL — get a prioritised growth plan in
+              minutes.
+            </p>
+
+            <div class="cta-row rise" style="--d: 0.34s">
+              <a class="btn btn--primary" data-demo href="#demo">
+                Book a demo
+                <svg aria-hidden="true"><use href="#i-arrow-right" /></svg>
+              </a>
+              <a class="btn btn--ghost" href="#how">See how it works</a>
+            </div>
+
+            <div class="pillars rise" style="--d: 0.44s">
+              <span class="pillar" style="--dot: #12d06a"><i></i>Monitor</span>
+              <span class="pillar" style="--dot: #7c6be8"><i></i>Diagnose</span>
+              <span class="pillar" style="--dot: #f0a93b"><i></i>Solve</span>
+            </div>
+
+            <p class="hero__note rise" style="--d: 0.54s">
+              Not just another SEO tool — an AI agent that turns data into growth decisions.
+            </p>
+          </div>
+
+          <!-- Product mock: gauge + trend + issue queue -->
+          <div class="mock rise" style="--d: 0.3s" aria-hidden="true">
+            <span class="mock__badge"><i></i>LIVE</span>
+
+            <div class="mock__bar">
+              <span class="mock__dot"></span>
+              <span class="mock__dot"></span>
+              <span class="mock__dot"></span>
+              <span class="mock__url">organiq.app/dashboard</span>
+            </div>
+
+            <div class="mock__body">
+              <div class="gauge">
+                <svg viewBox="0 0 132 132">
+                  <defs>
+                    <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#12D06A" />
+                      <stop offset="100%" stop-color="#7CE0A8" />
+                    </linearGradient>
+                  </defs>
+                  <circle class="gauge__track" cx="66" cy="66" r="52" />
+                  <circle class="gauge__value" cx="66" cy="66" r="52" />
+                </svg>
+                <div class="gauge__label">
+                  <span class="gauge__num">78</span>
+                  <span class="gauge__cap">SEO HEALTH</span>
+                </div>
+              </div>
+
+              <div class="spark">
+                <div class="spark__top">
+                  <span class="spark__cap">Organic impressions</span>
+                  <span class="spark__delta">▲ trending up</span>
+                </div>
+                <svg viewBox="0 0 300 76" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#12D06A" stop-opacity="0.32" />
+                      <stop offset="100%" stop-color="#12D06A" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    class="spark__fill"
+                    d="M0 62 25 56 50 60 75 46 100 50 125 38 150 42 175 28 200 33 225 20 250 24 275 12 300 8 300 76 0 76Z"
+                  />
+                  <path
+                    class="spark__line"
+                    d="M0 62 25 56 50 60 75 46 100 50 125 38 150 42 175 28 200 33 225 20 250 24 275 12 300 8"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div class="rows">
+              <div class="row" style="--sev: #f87171">
+                <span class="row__sev"></span>
+                <span class="row__name">12 product pages not indexed</span>
+                <span class="row__tag">HIGH</span>
+              </div>
+              <div class="row" style="--sev: #f0a93b">
+                <span class="row__sev"></span>
+                <span class="row__name">Thin meta descriptions on 34 URLs</span>
+                <span class="row__tag">MEDIUM</span>
+              </div>
+              <div class="row" style="--sev: #5ca6e0">
+                <span class="row__sev"></span>
+                <span class="row__name">Competitor outranks you on 8 keywords</span>
+                <span class="row__tag">LOW</span>
+              </div>
+            </div>
+
+            <div class="mock__foot">
+              <svg><use href="#i-sparkles" /></svg>
+              AI generated 3 ready-to-publish fixes
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           Problem
+           ================================================================= -->
+      <section class="band" id="problem">
+        <div class="wrap">
+          <div class="head reveal">
+            <span class="eyebrow">Pain point</span>
+            <h2 class="h2">Growth with no paid ads to fall back on</h2>
+            <p class="lede">
+              Many businesses cannot use paid advertising — regulated categories, platform bans,
+              thin margins — yet their survival depends on organic search traffic. When rankings
+              slip, there is no budget lever to pull.
+            </p>
+          </div>
+
+          <div class="grid grid--3">
+            <article class="card reveal" style="--i: 0; --tint: #e5484d">
+              <span class="card__num" aria-hidden="true">01</span>
+              <span class="icon"><svg><use href="#i-ban" /></svg></span>
+              <h3 class="h3">No paid ads allowed</h3>
+              <p>
+                Restricted categories and platform policies rule out Google and Meta ads entirely —
+                organic is the only channel available.
+              </p>
+            </article>
+
+            <article class="card reveal" style="--i: 1; --tint: #12a150">
+              <span class="card__num" aria-hidden="true">02</span>
+              <span class="icon"><svg><use href="#i-trending" /></svg></span>
+              <h3 class="h3">Organic equals revenue</h3>
+              <p>
+                Every ranking position is money. A page buried past position 15 captures well under
+                1% of clicks — effectively invisible.
+              </p>
+            </article>
+
+            <article class="card reveal" style="--i: 2; --tint: #5b5bd6">
+              <span class="card__num" aria-hidden="true">03</span>
+              <span class="icon"><svg><use href="#i-eye-off" /></svg></span>
+              <h3 class="h3">Invisible problems</h3>
+              <p>
+                Indexing failures, crawl waste and algorithm shifts go undetected for months —
+                nobody gets an alert when traffic quietly erodes.
+              </p>
+            </article>
+          </div>
+
+          <!-- Visibility gap -->
+          <div class="split">
+            <div class="reveal">
+              <span class="eyebrow">Current reality</span>
+              <h2 class="h2">The organic growth visibility gap</h2>
+              <p class="lede">
+                Teams stitch together three or four disconnected tools, export everything by hand,
+                and still end up with dashboards instead of decisions.
+              </p>
+
+              <ul class="checks">
+                <li>
+                  <svg><use href="#i-circle-x" /></svg>Multiple disconnected SEO tools
+                </li>
+                <li>
+                  <svg><use href="#i-circle-x" /></svg>Google indexing issues are hard to identify
+                </li>
+                <li>
+                  <svg><use href="#i-circle-x" /></svg>Algorithm updates hit rankings without
+                  warning
+                </li>
+                <li>
+                  <svg><use href="#i-circle-x" /></svg>Competitor strategies are difficult to track
+                </li>
+                <li><svg><use href="#i-circle-x" /></svg>Manual audits consume days of specialist time</li>
+                <li>
+                  <svg><use href="#i-circle-x" /></svg>Teams lack a clear action plan to improve
+                  traffic
+                </li>
+              </ul>
+            </div>
+
+            <div class="sprawl reveal">
+              <p class="sprawl__cap">Today — 4 tools, 0 answers</p>
+              <div class="sprawl__chips">
+                <span class="chip" style="--i: 0"><i></i>Google Search Console</span>
+                <span class="chip" style="--i: 1"><i></i>Analytics platform</span>
+                <span class="chip" style="--i: 2"><i></i>SEO suite</span>
+                <span class="chip" style="--i: 3"><i></i>Competitor tracker</span>
+                <span class="chip" style="--i: 4"><i></i>Manual CSV exports</span>
+              </div>
+
+              <div class="sprawl__arrow" aria-hidden="true">
+                <svg><use href="#i-arrow-down" /></svg>
+              </div>
+
+              <div class="sprawl__one">
+                <span class="mark__glyph"><svg aria-hidden="true"><use href="#i-sprout" /></svg></span>
+                <span>
+                  <strong>One platform, one plan</strong>
+                  <span>Monitor, diagnose and solve in a single pane of glass.</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           Solution
+           ================================================================= -->
+      <section class="band band--soft" id="solution">
+        <div class="wrap">
+          <div class="head head--center reveal">
+            <span class="eyebrow">Our solution</span>
+            <h2 class="h2">Meet AI Organic Growth</h2>
+            <p class="lede">
+              One intelligent platform that monitors, diagnoses, prioritises and solves your organic
+              growth challenges — end to end.
+            </p>
+          </div>
+
+          <div class="flow reveal">
+            <article class="step" style="--tint: #12a150">
+              <span class="step__ring"><svg><use href="#i-monitor" /></svg></span>
+              <h3>Monitor</h3>
+              <p>
+                Connect Google Search Console once. Rankings, impressions, indexing and Core Web
+                Vitals stream into one place — continuously.
+              </p>
+            </article>
+
+            <article class="step" style="--tint: #5b5bd6">
+              <span class="step__ring"><svg><use href="#i-scan" /></svg></span>
+              <h3>Diagnose</h3>
+              <p>
+                The agent pinpoints why traffic is falling, which pages Google skipped, and what
+                each issue is costing you in revenue.
+              </p>
+            </article>
+
+            <article class="step" style="--tint: #e0900b">
+              <span class="step__ring"><svg><use href="#i-sparkles" /></svg></span>
+              <h3>Solve</h3>
+              <p>
+                You get ranked fixes and ready-to-publish AI content — not another chart to
+                interpret on your own.
+              </p>
+            </article>
+          </div>
+
+          <p class="kicker reveal">
+            Not just another SEO tool — <span class="grad">an AI agent that turns data into growth
+            decisions.</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           How it works
+           ================================================================= -->
+      <section class="band" id="how">
+        <div class="wrap">
+          <div class="head reveal">
+            <span class="eyebrow">How it works</span>
+            <h2 class="h2">From a URL to a complete growth action plan</h2>
+            <p class="lede">
+              Enter a website address. The agent crawls, analyses, benchmarks and delivers a
+              prioritised plan — including content ready to publish.
+            </p>
+          </div>
+
+          <div class="pipe reveal">
+            <article class="node" style="--i: 0">
+              <span class="node__i">01</span>
+              <h3>Website URL input</h3>
+              <p>One field. No tags to install, no setup call.</p>
+            </article>
+            <article class="node" style="--i: 1">
+              <span class="node__i">02</span>
+              <h3>Sitemap crawl</h3>
+              <p>Every reachable page discovered and queued.</p>
+            </article>
+            <article class="node" style="--i: 2">
+              <span class="node__i">03</span>
+              <h3>SEO analysis</h3>
+              <p>On-page signals, metadata and structure scored.</p>
+            </article>
+            <article class="node" style="--i: 3">
+              <span class="node__i">04</span>
+              <h3>Indexing analysis</h3>
+              <p>What Google skipped — and the reason why.</p>
+            </article>
+            <article class="node" style="--i: 4">
+              <span class="node__i">05</span>
+              <h3>Competitor analysis</h3>
+              <p>Where rivals outrank you, keyword by keyword.</p>
+            </article>
+            <article class="node" style="--i: 5">
+              <span class="node__i">06</span>
+              <h3>AI recommendations</h3>
+              <p>Fixes ranked by estimated revenue impact.</p>
+            </article>
+            <article class="node" style="--i: 6">
+              <span class="node__i">07</span>
+              <h3>Content generation</h3>
+              <p>Titles, meta, articles and FAQs drafted for you.</p>
+            </article>
+            <article class="node" style="--i: 7">
+              <span class="node__i">08</span>
+              <h3>Growth actions</h3>
+              <p>A sequenced plan your team can ship this week.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           Features
+           ================================================================= -->
+      <section class="band band--soft" id="features">
+        <div class="wrap">
+          <div class="head head--center reveal">
+            <span class="eyebrow">Core features</span>
+            <h2 class="h2">Everything you need to grow organically</h2>
+            <p class="lede">
+              Six capabilities that replace a stack of disconnected tools — and add the layer none
+              of them have: a decision.
+            </p>
+          </div>
+
+          <div class="grid grid--3">
+            <article class="card reveal" style="--i: 0; --tint: #12a150">
+              <span class="icon"><svg><use href="#i-activity" /></svg></span>
+              <h3 class="h3">SEO health score</h3>
+              <p>A single score for site-wide performance, with drill-down diagnostics behind it.</p>
+            </article>
+            <article class="card reveal" style="--i: 1; --tint: #5b5bd6">
+              <span class="icon"><svg><use href="#i-layers" /></svg></span>
+              <h3 class="h3">Indexing gap detection</h3>
+              <p>Finds the pages Google isn't indexing and explains exactly why each one is missing.</p>
+            </article>
+            <article class="card reveal" style="--i: 2; --tint: #e0900b">
+              <span class="icon"><svg><use href="#i-chart" /></svg></span>
+              <h3 class="h3">Competitor AI analysis</h3>
+              <p>Reveals where competitors rank, which keywords they own, and how to catch up.</p>
+            </article>
+            <article class="card reveal" style="--i: 3; --tint: #3b82c4">
+              <span class="icon"><svg><use href="#i-file-text" /></svg></span>
+              <h3 class="h3">AI content optimisation</h3>
+              <p>Generates and rewrites titles, metadata and on-page copy for your target keywords.</p>
+            </article>
+            <article class="card reveal" style="--i: 4; --tint: #12a150">
+              <span class="icon"><svg><use href="#i-target" /></svg></span>
+              <h3 class="h3">Keyword recommendations</h3>
+              <p>High-opportunity keywords ranked by traffic and conversion potential, not volume alone.</p>
+            </article>
+            <article class="card reveal" style="--i: 5; --tint: #e5484d">
+              <span class="icon"><svg><use href="#i-dollar" /></svg></span>
+              <h3 class="h3">Revenue impact report</h3>
+              <p>Every issue ordered by estimated revenue at stake, so the roadmap writes itself.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           Dashboard
+           ================================================================= -->
+      <section class="band" id="dashboard">
+        <div class="wrap">
+          <div class="head reveal">
+            <span class="eyebrow">Product dashboard</span>
+            <h2 class="h2">A single pane of glass for organic growth</h2>
+            <p class="lede">
+              Five views, one workspace — health, indexing, competitors, opportunity and the next
+              action to take.
+            </p>
+          </div>
+
+          <div class="bento">
+            <article class="card reveal" style="--i: 0; --tint: #12a150">
+              <span class="icon"><svg><use href="#i-activity" /></svg></span>
+              <h3 class="h3">SEO health score</h3>
+              <p>At-a-glance site health with drill-down diagnostics.</p>
+            </article>
+            <article class="card reveal" style="--i: 1; --tint: #5b5bd6">
+              <span class="icon"><svg><use href="#i-eye-off" /></svg></span>
+              <h3 class="h3">Non-indexed pages</h3>
+              <p>Identify and fix the pages Google isn't crawling.</p>
+            </article>
+            <article class="card reveal" style="--i: 2; --tint: #e0900b">
+              <span class="icon"><svg><use href="#i-chart" /></svg></span>
+              <h3 class="h3">Competitor insights</h3>
+              <p>Benchmark keywords and rankings against rivals.</p>
+            </article>
+            <article class="card reveal" style="--i: 3; --tint: #3b82c4">
+              <span class="icon"><svg><use href="#i-target" /></svg></span>
+              <h3 class="h3">Keyword opportunities</h3>
+              <p>High-potential keywords ranked by traffic and conversion value.</p>
+            </article>
+            <article class="card reveal" style="--i: 4; --tint: #12a150">
+              <span class="icon"><svg><use href="#i-sparkles" /></svg></span>
+              <h3 class="h3">Growth recommendations</h3>
+              <p>AI-prioritised actions tied directly to revenue impact.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           Free tools
+           ================================================================= -->
+      <section class="band band--soft" id="tools">
+        <div class="wrap">
+          <div class="head reveal">
+            <span class="eyebrow">Free tools</span>
+            <h2 class="h2">Start smaller, if you like</h2>
+            <p class="lede">
+              A set of focused utilities you can run on any page — useful on their own, and a quick
+              way to see how the agent thinks.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Marquee. main.js clones the group twice for the seamless loop;
+             without JS this stays a single, horizontally scrollable row. -->
+        <div class="marquee reveal">
+          <div class="marquee__track">
+            <div class="marquee__group">
+              <a class="tool" data-demo href="#demo">
+                <span class="tool__icon" style="--tint: #12a150">
+                  <svg aria-hidden="true"><use href="#i-link" /></svg>
+                </span>
+                <strong>Link Gap</strong>
+                <span>Find the links your competitors have and you don't.</span>
+              </a>
+              <a class="tool" data-demo href="#demo">
+                <span class="tool__icon" style="--tint: #5b5bd6">
+                  <svg aria-hidden="true"><use href="#i-search" /></svg>
+                </span>
+                <strong>Page Audit</strong>
+                <span>Analyse any page, with its Search Console data beside it.</span>
+              </a>
+              <a class="tool" data-demo href="#demo">
+                <span class="tool__icon" style="--tint: #e0900b">
+                  <svg aria-hidden="true"><use href="#i-zap" /></svg>
+                </span>
+                <strong>Page Speed Insights</strong>
+                <span>Core Web Vitals for both mobile and desktop.</span>
+              </a>
+              <a class="tool" data-demo href="#demo">
+                <span class="tool__icon" style="--tint: #3b82c4">
+                  <svg aria-hidden="true"><use href="#i-layers" /></svg>
+                </span>
+                <strong>Built With</strong>
+                <span>The CMS, frameworks, analytics and host behind a URL.</span>
+              </a>
+              <a class="tool" data-demo href="#demo">
+                <span class="tool__icon" style="--tint: #12a150">
+                  <svg aria-hidden="true"><use href="#i-type" /></svg>
+                </span>
+                <strong>Case Converter</strong>
+                <span>UPPERCASE, lowercase, Title or Sentence case, instantly.</span>
+              </a>
+              <a class="tool" data-demo href="#demo">
+                <span class="tool__icon" style="--tint: #e5484d">
+                  <svg aria-hidden="true"><use href="#i-file-text" /></svg>
+                </span>
+                <strong>Small Text Generator</strong>
+                <span>Turn text into ˢᵐᵃˡˡ Unicode you can paste anywhere.</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           CTA
+           ================================================================= -->
+      <section class="cta night">
+        <div class="cta__glow" aria-hidden="true"></div>
+        <div class="wrap">
+          <div class="reveal">
+            <span class="eyebrow">The opportunity</span>
+            <h2>Organic growth should be <span class="grad">proactive</span>, not reactive</h2>
+            <p class="lede">
+              Every page you own is an organic growth opportunity waiting to be unlocked. Point the
+              agent at your site and find out which ones.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn--primary" data-demo href="#demo">
+                Book a demo
+                <svg aria-hidden="true"><use href="#i-arrow-right" /></svg>
+              </a>
+              <a class="btn btn--ghost" href="#features">Explore the features</a>
+            </div>
+            <p class="cta__quote">
+              “Every product page is an organic growth opportunity waiting to be unlocked. Our AI
+              makes that happen automatically, at scale, with measurable proof.”
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap foot__inner">
+        <span class="mark">
+          <span class="mark__glyph"><svg aria-hidden="true"><use href="#i-sprout" /></svg></span>
+          Organiq
+        </span>
+        <nav class="foot__links" aria-label="Footer">
+          <a href="#problem">Problem</a>
+          <a href="#solution">Solution</a>
+          <a href="#how">How it works</a>
+          <a href="#features">Features</a>
+          <a data-demo href="#demo">Book a demo</a>
+        </nav>
+        <span>AI Organic Growth · Intrapreneur Challenge</span>
+      </div>
+    </footer>
+
+    <!-- ===================================================================
+         Book-a-demo dialog. Opened with dialog.showModal() from any
+         [data-demo] trigger; without JS the #demo hash reveals it inline
+         via the .modal:target rule in styles.css.
+         =================================================================== -->
+    <dialog class="modal" id="demo" aria-labelledby="demo-title">
+      <div class="modal__card">
+        <button class="modal__x" type="button" data-demo-close aria-label="Close">
+          <svg aria-hidden="true"><use href="#i-x" /></svg>
+        </button>
+
+        <form class="modal__form" id="demo-form" novalidate>
+          <span class="eyebrow">Book a demo</span>
+          <h2 class="modal__title" id="demo-title">See Organiq run on your own site</h2>
+          <p class="modal__sub">
+            Tell us where to look. We'll run the audit on your domain and walk you through exactly
+            what the agent found — no slide deck, just your data.
+          </p>
+
+          <div class="modal__grid">
+            <p class="field">
+              <label for="d-name">Full name</label>
+              <input id="d-name" name="name" type="text" autocomplete="name" required />
+            </p>
+            <p class="field">
+              <label for="d-email">Work email</label>
+              <input id="d-email" name="email" type="email" autocomplete="email" required />
+            </p>
+            <p class="field">
+              <label for="d-company">Company</label>
+              <input id="d-company" name="company" type="text" autocomplete="organization" />
+            </p>
+            <p class="field">
+              <label for="d-site">Website to analyse</label>
+              <input
+                id="d-site"
+                name="website"
+                type="url"
+                inputmode="url"
+                placeholder="https://"
+                required
+              />
+            </p>
+            <p class="field field--wide">
+              <label for="d-note">What would you like to cover? <span>Optional</span></label>
+              <textarea id="d-note" name="note" rows="3"></textarea>
+            </p>
+          </div>
+
+          <p class="modal__error" role="alert" hidden></p>
+
+          <noscript>
+            <p class="modal__note">
+              Sending this form needs JavaScript enabled. Please turn it on, or contact us directly
+              to arrange your demo.
+            </p>
+          </noscript>
+
+          <button class="btn btn--primary modal__submit" type="submit">
+            <span>Request demo</span>
+            <svg aria-hidden="true"><use href="#i-arrow-right" /></svg>
+          </button>
+
+          <p class="modal__fine">
+            We only use these details to arrange your demo. No newsletter, no sharing.
+          </p>
+        </form>
+
+        <div class="modal__done" hidden>
+          <span class="modal__tick"><svg aria-hidden="true"><use href="#i-check" /></svg></span>
+          <h2 class="modal__title" tabindex="-1">Request received</h2>
+          <p class="modal__sub">
+            Thanks — we'll be in touch at <b data-demo-email></b> within two working days with your
+            audit and a time that suits you.
+          </p>
+          <button class="btn btn--ghost" type="button" data-demo-close>Close</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script src="assets/main.js"></script>
+  </body>
+</html>
