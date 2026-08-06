@@ -11,7 +11,7 @@ export function ProjectCard({ project, onConnect }: ProjectCardProps) {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col gap-4.5 rounded-2xl border border-border bg-card p-5.5 transition-shadow hover:shadow-sm">
+    <div className="flex flex-col gap-4.5 rounded-2xl border border-border bg-card p-5.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-[0_12px_28px_-16px_rgba(11,107,60,0.35)]">
       <div className="flex items-center gap-3">
         <span
           className="flex size-11 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-white"
@@ -56,7 +56,7 @@ export function ProjectCard({ project, onConnect }: ProjectCardProps) {
       )}
 
       {project.connected ? (
-        <Button variant="dark" onClick={() => navigate(`/app/${project.id}/dashboard`)}>
+        <Button size="lg" onClick={() => navigate(`/app/${project.id}/dashboard`)}>
           Open dashboard
         </Button>
       ) : (

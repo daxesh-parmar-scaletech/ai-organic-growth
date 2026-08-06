@@ -113,7 +113,7 @@ export function AiChatWidget({ project }: AiChatWidgetProps) {
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
-        title="Ask Organiq AI · drag to move"
+        title="Ask Ranky AI · drag to move"
         style={{ left: position.x, top: position.y }}
         className="fixed z-40 flex size-14 cursor-grab touch-none items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 transition-transform hover:scale-105 active:cursor-grabbing"
       >
@@ -127,7 +127,7 @@ export function AiChatWidget({ project }: AiChatWidgetProps) {
               <Bot className="size-[18px]" />
             </span>
             <div>
-              <SheetTitle>Organiq AI</SheetTitle>
+              <SheetTitle>Ranky AI</SheetTitle>
               <div className="flex items-center gap-1.5 text-xs font-semibold text-primary">
                 <span className="size-1.5 rounded-full bg-primary" />
                 Online · SEO Assistant

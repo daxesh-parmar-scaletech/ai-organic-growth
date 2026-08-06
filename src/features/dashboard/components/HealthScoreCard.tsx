@@ -45,7 +45,7 @@ export function HealthScoreCard({
       {dark ? (
         <>
           <p className="text-center text-[13px] leading-relaxed text-[#AEB4BE]">
-            Fixing the 3 high-priority issues could raise this to <b className="text-[#12D06A]">~86</b>.
+            Fixing the 3 high-priority issues could raise this to <b className="text-[#1FCB79]">~86</b>.
           </p>
           <div className="mt-2 flex justify-between text-[13px]">
             <span className="text-[#AEB4BE]">Domain authority</span>
