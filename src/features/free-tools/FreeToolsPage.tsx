@@ -42,9 +42,15 @@ export function FreeToolsPage() {
       icon: 'T',
       to: `/app/${project.id}/free-tools/small-text-generator`,
     },
+    {
+      id: 'article-title-generator',
+      name: 'Title Generator',
+      icon: '📝',
+      to: `/app/${project.id}/free-tools/article-title-generator`,
+    },
 
     { id: 'plagiarism-checker', name: 'Plagiarism Checker', icon: '📋' },
-    { id: 'article-rewriter', name: 'Article Rewriter', icon: '✏️' },
+    // { id: 'article-rewriter', name: 'Article Rewriter', icon: '✏️' },
   ];
 
   return (
@@ -54,8 +60,9 @@ export function FreeToolsPage() {
         <div className="flex flex-col gap-1">
           <p className="font-semibold text-amber-900">More tools coming soon</p>
           <p className="text-sm text-amber-800">
-            Link Gap, Page Audit, Core Web Vitals, Case Converter, Small Text Generator, and Built
-            With are live now (look for the "Live" badge below) — the rest are under development for{' '}
+            Link Gap, Page Audit, Core Web Vitals, Case Converter, Small Text Generator, Article/Blog
+            Title Generator, and Built With are live now (look for the "Live" badge below) — the rest
+            are under development for{' '}
             {project.domain}. Check back soon for the full set of text analysis, content generation,
             and optimization tools.
           </p>

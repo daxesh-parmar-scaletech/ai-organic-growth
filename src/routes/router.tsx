@@ -56,6 +56,11 @@ const CoreWebVitalsPage = lazy(() =>
 const BuiltWithPage = lazy(() =>
   import('@/features/free-tools/BuiltWithPage').then((m) => ({ default: m.BuiltWithPage }))
 );
+const ArticleTitleGeneratorPage = lazy(() =>
+  import('@/features/free-tools/ArticleTitleGeneratorPage').then((m) => ({
+    default: m.ArticleTitleGeneratorPage,
+  }))
+);
 
 export const router = createBrowserRouter([
   {
@@ -133,6 +138,11 @@ export const router = createBrowserRouter([
               {
                 path: 'free-tools/built-with',
                 element: <BuiltWithPage />,
+                errorElement: <RouteErrorBoundary />,
+              },
+              {
+                path: 'free-tools/article-title-generator',
+                element: <ArticleTitleGeneratorPage />,
                 errorElement: <RouteErrorBoundary />,
               },
               { path: 'settings', element: <SettingsPage />, errorElement: <RouteErrorBoundary /> },
