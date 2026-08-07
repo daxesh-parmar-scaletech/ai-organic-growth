@@ -8,7 +8,7 @@ interface MetricCardProps {
   sparklineColor?: string;
 }
 
-export function MetricCard({ metric, sparklineData, sparklineColor = "#12A150" }: MetricCardProps) {
+export function MetricCard({ metric, sparklineData, sparklineColor = "#0B6B3C" }: MetricCardProps) {
   return (
     <StatCard
       label={metric.label}

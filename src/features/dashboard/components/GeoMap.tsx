@@ -39,7 +39,7 @@ export function GeoMap({ data, focusedCountry }: GeoMapProps) {
       <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" maxZoom={12} />
       {data.map((geo) => {
         const radius = 9 + Math.sqrt(geo.clicks / maxClicks) * 24;
-        const color = geo.belowAverageCtr ? "#E0900B" : "#12A150";
+        const color = geo.belowAverageCtr ? "#E0900B" : "#0B6B3C";
         return (
           <CircleMarker
             key={geo.country}

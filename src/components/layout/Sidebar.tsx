@@ -1,5 +1,6 @@
-import { ChevronsUpDown, Sprout } from "lucide-react";
+import { ChevronsUpDown } from "lucide-react";
 import { Link, useLocation } from "react-router";
+import { Logo } from "@/components/common/Logo";
 import { SidebarNavItem } from "@/components/layout/SidebarNavItem";
 import { UserMenu } from "@/components/layout/UserMenu";
 import { NAV_ITEMS } from "@/lib/constants";
@@ -15,11 +16,8 @@ export function Sidebar({ project }: SidebarProps) {
 
   return (
     <aside className="flex h-full w-[246px] shrink-0 flex-col border-r border-border bg-card">
-      <div className="flex h-16 items-center gap-2.5 border-b border-border px-5">
-        <span className="flex size-[31px] items-center justify-center rounded-[9px] bg-primary text-primary-foreground">
-          <Sprout className="size-[17px]" />
-        </span>
-        <span className="text-[17px] font-extrabold tracking-tight">Organiq</span>
+      <div className="flex h-16 items-center border-b border-border px-5">
+        <Logo iconSize={36} />
       </div>
 
       <div className="p-3.5 pb-1">
