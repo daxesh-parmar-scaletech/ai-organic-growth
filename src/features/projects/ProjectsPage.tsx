@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
-import { Sprout } from "lucide-react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { Logo } from "@/components/common/Logo";
 import { PageLoader } from "@/components/common/PageLoader";
 import { QueryErrorFallback } from "@/components/common/QueryErrorFallback";
 import { Button } from "@/components/ui/button";
@@ -61,19 +61,19 @@ export function ProjectsPage() {
 
   return (
     <div className="min-h-screen">
-      <div className="flex h-16 items-center justify-between border-b border-border bg-card px-7">
-        <div className="flex items-center gap-2.5">
-          <span className="flex size-8 items-center justify-center rounded-[9px] bg-primary">
-            <Sprout className="size-[18px] text-primary-foreground" />
-          </span>
-          <span className="text-[17px] font-extrabold tracking-tight">Organiq</span>
-        </div>
+      <div className="flex h-16 items-center justify-between border-b border-border bg-card px-7 shadow-[0_1px_2px_rgba(14,23,38,0.04)]">
+        <Logo iconSize={36} />
         <div className="flex items-center gap-3.5">
           <span className="text-[13px] text-muted-foreground">{user?.email}</span>
           <span className="flex size-[34px] items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
             {user?.name?.charAt(0) ?? "?"}
           </span>
-          <Button variant="outline" size="sm" onClick={handleSignOut}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleSignOut}
+            className="border-primary/30 text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-primary/5 hover:text-primary"
+          >
             Sign out
           </Button>
         </div>

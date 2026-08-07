@@ -24,7 +24,7 @@ export function ConnectConsentDialog({ project, onCancel, onAllow }: ConnectCons
             <ScanSearch className="size-5" />
           </span>
           <div className="text-[19px] leading-snug font-semibold text-foreground">
-            Organiq wants to access your Google Account
+            Ranky AI wants to access your Google Account
           </div>
           <div className="mt-4 flex w-fit items-center gap-2.5 rounded-full border border-border px-3 py-2">
             <span className="flex size-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
@@ -35,7 +35,7 @@ export function ConnectConsentDialog({ project, onCancel, onAllow }: ConnectCons
         </div>
         <div className="px-7 py-5.5">
           <div className="mb-3.5 text-sm text-foreground">
-            This will allow Organiq for <b>{project?.domain}</b> to:
+            This will allow Ranky AI for <b>{project?.domain}</b> to:
           </div>
           <div className="flex flex-col gap-3.5">
             {PERMISSIONS.map((permission) => (
@@ -46,7 +46,7 @@ export function ConnectConsentDialog({ project, onCancel, onAllow }: ConnectCons
             ))}
           </div>
           <p className="mt-5 text-xs leading-relaxed text-muted-foreground/80">
-            Organiq requests read-only access. You can review these permissions and revoke access at any time in
+            Ranky AI requests read-only access. You can review these permissions and revoke access at any time in
             your Google Account settings.
           </p>
         </div>

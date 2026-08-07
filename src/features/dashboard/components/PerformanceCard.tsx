@@ -27,7 +27,7 @@ export function PerformanceCard({ title, trend }: PerformanceCardProps) {
       <TrendAreaChart
         labels={trend.labels}
         series={[
-          { label: "Clicks", data: trend.clicksSeries, color: "#12A150" },
+          { label: "Clicks", data: trend.clicksSeries, color: "#0B6B3C" },
           { label: "Impressions", data: trend.impressionsSeries, color: "#5B5BD6" },
         ]}
       />

@@ -11,9 +11,9 @@ export function AddProjectCard({ onClick, isConnecting }: AddProjectCardProps) {
       type="button"
       onClick={onClick}
       disabled={isConnecting}
-      className="flex min-h-[168px] flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-primary/30 bg-primary/5 p-5.5 text-center transition-colors cursor-pointer hover:border-primary/50 hover:bg-primary/10 disabled:pointer-events-none disabled:opacity-60"
+      className="group flex min-h-[168px] flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-primary/30 bg-primary/5 p-5.5 text-center transition-all duration-200 cursor-pointer hover:-translate-y-0.5 hover:border-primary/50 hover:bg-primary/10 disabled:pointer-events-none disabled:opacity-60"
     >
-      <span className="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+      <span className="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:rotate-90 group-hover:scale-110">
         {isConnecting ? <Loader2 className="size-5 animate-spin" /> : <Plus className="size-5" />}
       </span>
       <div>

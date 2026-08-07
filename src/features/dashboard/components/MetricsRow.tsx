@@ -2,7 +2,7 @@ import { MetricCard } from "@/features/dashboard/components/MetricCard";
 import type { DashboardMetric, DashboardTrend } from "@/types/dashboard";
 
 const SPARKLINE_COLOR: Record<string, string> = {
-  "Total clicks": "#12A150",
+  "Total clicks": "#0B6B3C",
   Impressions: "#5B5BD6",
 };
 
