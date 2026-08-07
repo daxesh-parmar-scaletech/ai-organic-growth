@@ -1,6 +1,6 @@
-# Organiq — landing page
+# Ranky AI — landing page
 
-A standalone marketing page for **Organiq / AI Organic Growth**. Plain HTML, CSS and vanilla JS —
+A standalone marketing page for **Ranky AI / AI Organic Growth**. Plain HTML, CSS and vanilla JS —
 **no build step, no dependencies, no framework**.
 
 ```
@@ -34,11 +34,11 @@ Google Fonts request needs the network, and the page falls back to `system-ui` w
 ## Design
 
 Tokens are copied from [`../src/index.css`](../src/index.css) so the page shares one visual language
-with the app: `#12A150` / `#12D06A` green, `#5B5BD6` indigo, `#0A0F0C` night, the `--radius: 0.7rem`
+with the app: `#0B6B3C` / `#1FCB79` green, `#5B5BD6` indigo, `#0A0F0C` night, the `--radius: 0.7rem`
 scale, and the app's long low-opacity shadows. Type is **Plus Jakarta Sans** with **JetBrains Mono**
 for eyebrows and step numbers — the same pairing as the app.
 
-The dark hero reuses the layered radial-gradient wash and the `#12D06A → #7CE0A8` headline gradient
+The dark hero reuses the layered radial-gradient wash and the `#1FCB79 → #82DBB1` headline gradient
 from `src/features/auth/LoginPage.tsx`.
 
 ### Sections

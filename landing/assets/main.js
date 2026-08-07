@@ -1,5 +1,5 @@
 /* =========================================================================
-   Organiq — landing page behaviour
+   Ranky AI — landing page behaviour
    No dependencies. Everything here is progressive enhancement: with JS
    disabled the page is fully readable and fully visible.
    ========================================================================= */
@@ -196,6 +196,40 @@
   );
 
   syncNav();
+
+  /* --- Scroll-spy: highlight the current section's nav link ----------- */
+
+  var navLinks = document.querySelectorAll(".nav__link");
+  var spySections = [];
+
+  navLinks.forEach(function (link) {
+    var id = link.getAttribute("href").slice(1);
+    var section = document.getElementById(id);
+    if (section) spySections.push(section);
+  });
+
+  if (spySections.length && "IntersectionObserver" in window) {
+    var setActiveLink = function (id) {
+      navLinks.forEach(function (link) {
+        link.classList.toggle("is-active", link.getAttribute("href") === "#" + id);
+      });
+    };
+
+    var spy = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) setActiveLink(entry.target.id);
+        });
+      },
+      // A thin band just above the viewport's middle — whichever section is
+      // crossing it counts as "current", the usual scroll-spy trick.
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+
+    spySections.forEach(function (section) {
+      spy.observe(section);
+    });
+  }
 
   /* --- Scroll reveals -------------------------------------------------
      One observer drives three things:
