@@ -48,6 +48,12 @@ export function FreeToolsPage() {
       icon: '📝',
       to: `/app/${project.id}/free-tools/article-title-generator`,
     },
+    {
+      id: 'best-keywords',
+      name: 'Your Best Keywords',
+      icon: '🎯',
+      to: `/app/${project.id}/free-tools/best-keywords`,
+    },
 
     { id: 'plagiarism-checker', name: 'Plagiarism Checker', icon: '📋' },
     // { id: 'article-rewriter', name: 'Article Rewriter', icon: '✏️' },

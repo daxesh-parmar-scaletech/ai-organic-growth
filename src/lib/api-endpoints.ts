@@ -31,6 +31,7 @@ export const API_CONFIG = {
   gscSync: (projectId: string) => `projects/${projectId}/gsc-sync`,
   coreWebVitals: "core-web-vitals",
   builtWith: "built-with",
+  bestKeywords: "best-keywords",
 };
 
 /**
