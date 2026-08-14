@@ -61,6 +61,9 @@ const ArticleTitleGeneratorPage = lazy(() =>
     default: m.ArticleTitleGeneratorPage,
   }))
 );
+const BestKeywordsPage = lazy(() =>
+  import('@/features/free-tools/BestKeywordsPage').then((m) => ({ default: m.BestKeywordsPage }))
+);
 
 export const router = createBrowserRouter([
   {
@@ -143,6 +146,11 @@ export const router = createBrowserRouter([
               {
                 path: 'free-tools/article-title-generator',
                 element: <ArticleTitleGeneratorPage />,
+                errorElement: <RouteErrorBoundary />,
+              },
+              {
+                path: 'free-tools/best-keywords',
+                element: <BestKeywordsPage />,
                 errorElement: <RouteErrorBoundary />,
               },
               { path: 'settings', element: <SettingsPage />, errorElement: <RouteErrorBoundary /> },

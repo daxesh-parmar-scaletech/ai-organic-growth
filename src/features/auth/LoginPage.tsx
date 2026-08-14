@@ -117,8 +117,9 @@ export function LoginPage() {
             </span>
           </h1>
           <p className="max-w-[440px] text-lg leading-relaxed text-white/65">
-            Built for businesses that can&apos;t rely on paid ads. Ranky AI shows{' '}
-            <b className="font-semibold text-white">exactly what to fix to rank higher.</b> ⭐
+            Built for businesses that can&apos;t rely on paid ads — Ranky AI reads your Search
+            Console data and shows you{' '}
+            <b className="font-semibold text-white">exactly what to fix to rank higher.</b>
           </p>
           <div className="mt-10 flex items-center gap-3">
             <p className="text-[13px] font-semibold tracking-[0.18em] text-white/50 uppercase">
@@ -131,7 +132,7 @@ export function LoginPage() {
         <div className="relative pt-12">
           <div className="mb-5 h-px w-16 bg-white/15" />
           <p className="max-w-[420px] text-[13px] leading-relaxed text-white/45">
-            Not just another SEO tool an AI agent that turns data into growth decisions.
+            Not just another SEO tool — an AI agent that turns data into growth decisions.
           </p>
         </div>
       </aside>
@@ -147,6 +148,7 @@ export function LoginPage() {
         />
 
         <div className="relative w-full max-w-[400px]">
+          <Logo iconSize={44} textClassName="text-[23px] text-primary" className="mb-8" />
 
           <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-[0_18px_50px_-30px_rgba(14,23,38,.28)]">
             <div className="h-1.5 w-full bg-linear-to-r from-[#0B6B3C] via-[#1FCB79] to-[#82DBB1]" />

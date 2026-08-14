@@ -56,11 +56,7 @@ export function ProjectCard({ project, onConnect }: ProjectCardProps) {
       )}
 
       {project.connected ? (
-        <Button
-          size="lg"
-          className="border-primary bg-transparent text-primary transition-colors duration-300 hover:bg-primary hover:text-background"
-          onClick={() => navigate(`/app/${project.id}/dashboard`)}
-        >
+        <Button size="lg" onClick={() => navigate(`/app/${project.id}/dashboard`)}>
           Open dashboard
         </Button>
       ) : (
