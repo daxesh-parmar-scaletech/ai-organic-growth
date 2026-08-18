@@ -12,6 +12,7 @@ import type { Project } from "@/types/project";
 const inMemoryProjects: Project[] = projectsMock.map((project) => ({ ...project }));
 
 export async function getProjects(): Promise<Project[]> {
+  console.log("🚀 ~ getProjects ~ USE_MOCKS:", USE_MOCKS, import.meta.env.VITE_USE_MOCKS)
   if (USE_MOCKS) return mockDelay([...inMemoryProjects]);
   return httpService.get<Project[]>(API_CONFIG.projects);
 }

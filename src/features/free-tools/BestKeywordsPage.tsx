@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Loader2, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,13 +7,34 @@ import { ToolPageHeader } from "@/features/free-tools/components/ToolPageHeader"
 import { KeywordSunburstChart } from "@/features/free-tools/components/KeywordSunburstChart";
 import { useBestKeywords } from "@/hooks/queries/useBestKeywords";
 
+// Accepts a bare domain ("example.com"), a "www." host, or a full URL with
+// scheme/path/query — anything that resolves to a real-looking hostname with a TLD.
+const HOSTNAME_PATTERN = /^([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/i;
+
+function isValidWebsiteUrl(value: string): boolean {
+  const trimmed = value.trim();
+  if (!trimmed) return false;
+
+  try {
+    const url = new URL(/^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`);
+    return HOSTNAME_PATTERN.test(url.hostname);
+  } catch {
+    return false;
+  }
+}
+
 export function BestKeywordsPage() {
   const [url, setUrl] = useState("");
+  const [touched, setTouched] = useState(false);
   const keywordsMutation = useBestKeywords();
   const result = keywordsMutation.data;
-  const canSubmit = url.trim().length > 0 && !keywordsMutation.isPending;
+
+  const isValid = useMemo(() => isValidWebsiteUrl(url), [url]);
+  const showValidationError = touched && url.trim().length > 0 && !isValid;
+  const canSubmit = isValid && !keywordsMutation.isPending;
 
   const handleSubmit = () => {
+    setTouched(true);
     if (!canSubmit) return;
     keywordsMutation.mutate(url.trim());
   };
@@ -22,7 +43,7 @@ export function BestKeywordsPage() {
     <div className="flex flex-col gap-4">
       <ToolPageHeader
         title="Your Best Keywords"
-        description="Enter any website URL to see the top keywords it ranks for on Google, grouped by topic."
+        description="Enter any website URL to get AI-suggested keywords it has the best chance of ranking for on Google, based on its actual page content."
       />
 
       <SectionCard title="Analyze a website">
@@ -32,9 +53,11 @@ export function BestKeywordsPage() {
             <Input
               value={url}
               onChange={(e) => setUrl(e.target.value)}
+              onBlur={() => setTouched(true)}
               onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
               placeholder="https://example.com"
               className="h-9"
+              aria-invalid={showValidationError}
             />
           </div>
           <Button onClick={handleSubmit} disabled={!canSubmit} className="h-9 gap-1.5">
@@ -46,6 +69,11 @@ export function BestKeywordsPage() {
             Get Keywords
           </Button>
         </div>
+        {showValidationError ? (
+          <p className="mt-2 text-[12.5px] text-destructive">
+            Enter a valid website URL (e.g. example.com or https://example.com).
+          </p>
+        ) : null}
         {keywordsMutation.isPending ? (
           <p className="mt-2 text-[12.5px] text-muted-foreground">
             Analyzing the page and researching keywords — this can take a few seconds…
@@ -58,10 +86,13 @@ export function BestKeywordsPage() {
       ) : null}
 
       {result ? (
-        <SectionCard title={`Top keywords for ${result.domain}`}>
-          <p className="-mt-2 mb-3 text-[12.5px] text-muted-foreground">
+        <SectionCard title={`Keywords ${result.domain} has the best chance to rank for`}>
+          <p className="-mt-2 mb-1 text-[12.5px] text-muted-foreground">
             {result.categories.length} topic groups ·{" "}
             {result.categories.reduce((sum, category) => sum + category.items.length, 0)} keywords
+          </p>
+          <p className="mb-3 text-[11.5px] text-muted-foreground">
+            AI-suggested ranking opportunities based on this page's actual content — not confirmed Google rankings.
           </p>
           <KeywordSunburstChart domain={result.domain} categories={result.categories} />
         </SectionCard>

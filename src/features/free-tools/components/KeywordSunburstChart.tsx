@@ -14,6 +14,7 @@ interface HoverInfo {
   title: string;
   subtitle: string;
   copyable: boolean;
+  chancePct?: number;
 }
 
 const SIZE = 760;
@@ -39,8 +40,15 @@ const CATEGORY_COLORS = [
 ];
 
 // Same palette, light-to-dark, used as a sequential ramp so the outer ring's
-// color encodes each keyword's relative search volume rank rather than its category.
-const VOLUME_COLOR_RAMP = [...CATEGORY_COLORS].reverse();
+// color encodes each keyword's relative estimated ranking chance rather than its category.
+const CHANCE_COLOR_RAMP = [...CATEGORY_COLORS].reverse();
+
+// Maps a keyword's relative score (0-1) to a rough "chance to rank" percentage.
+// This is a heuristic derived from AI-inferred relevance to the page's content —
+// not a measured probability from real Google ranking or search-volume data.
+function chancePercent(t: number): number {
+  return Math.round(35 + Math.min(1, Math.max(0, t)) * 60);
+}
 
 function hexToRgb(hex: string): [number, number, number] {
   const value = hex.replace("#", "");
@@ -51,10 +59,10 @@ function rgbToHex([r, g, b]: [number, number, number]): string {
   return `#${[r, g, b].map((c) => Math.round(c).toString(16).padStart(2, "0")).join("")}`;
 }
 
-// t in [0,1]; 0 = lowest volume (lightest), 1 = highest volume (darkest).
-function volumeColor(t: number): string {
+// t in [0,1]; 0 = lowest chance (lightest), 1 = highest chance (darkest).
+function chanceColor(t: number): string {
   const clamped = Math.min(1, Math.max(0, t));
-  const stops = VOLUME_COLOR_RAMP;
+  const stops = CHANCE_COLOR_RAMP;
   const scaled = clamped * (stops.length - 1);
   const lowerIndex = Math.floor(scaled);
   const upperIndex = Math.min(stops.length - 1, lowerIndex + 1);
@@ -118,6 +126,12 @@ export function KeywordSunburstChart({ domain, categories }: KeywordSunburstChar
 
   const volumeRange = Math.max(1, maxVolume - minVolume);
 
+  const chanceLabel = (chancePct: number) => {
+    if (chancePct >= 80) return "High";
+    if (chancePct >= 55) return "Medium";
+    return "Low";
+  };
+
   const handleCopyKeyword = async (keyword: string) => {
     try {
       await navigator.clipboard.writeText(keyword);
@@ -133,18 +147,18 @@ export function KeywordSunburstChart({ domain, categories }: KeywordSunburstChar
     <div className="flex flex-col items-center gap-5">
       <div className="flex flex-col items-center gap-3">
         <div className="flex items-center gap-2">
-          <span className="text-[11px] font-medium text-muted-foreground">Lower search volume</span>
+          <span className="text-[11px] font-medium text-muted-foreground">Lower chance to rank</span>
           <div
             className="h-2.5 w-40 rounded-full"
             style={{
-              background: `linear-gradient(to right, ${VOLUME_COLOR_RAMP[0]}, ${VOLUME_COLOR_RAMP[VOLUME_COLOR_RAMP.length - 1]})`,
+              background: `linear-gradient(to right, ${CHANCE_COLOR_RAMP[0]}, ${CHANCE_COLOR_RAMP[CHANCE_COLOR_RAMP.length - 1]})`,
             }}
           />
-          <span className="text-[11px] font-medium text-muted-foreground">Higher search volume</span>
+          <span className="text-[11px] font-medium text-muted-foreground">Higher chance to rank</span>
         </div>
         <p className="text-[11px] text-muted-foreground">
-          Outer ring color ranks each keyword by estimated search volume · inner ring groups keywords by topic ·
-          click any keyword to copy it
+          Outer ring color shows each keyword's AI-estimated chance of ranking on Google · inner ring groups
+          keywords by topic · click any keyword to copy it
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t border-border pt-3">
@@ -166,7 +180,7 @@ export function KeywordSunburstChart({ domain, categories }: KeywordSunburstChar
           width="100%"
           height="100%"
           role="img"
-          aria-label={`Top keyword suggestions for ${domain}`}
+          aria-label={`AI-suggested keyword opportunities and estimated ranking chance for ${domain}`}
         >
           <defs>
             <linearGradient id="wedge-sheen" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -227,8 +241,9 @@ export function KeywordSunburstChart({ domain, categories }: KeywordSunburstChar
                   const itemStart = categoryIndex * categorySpan + itemIndex * itemSpan + GAP_DEG / 2;
                   const itemEnd = categoryIndex * categorySpan + (itemIndex + 1) * itemSpan - GAP_DEG / 2;
                   const itemMid = (itemStart + itemEnd) / 2;
-                  const volumeT = (item.volume - minVolume) / volumeRange;
-                  const color = volumeColor(volumeT);
+                  const chanceT = (item.volume - minVolume) / volumeRange;
+                  const color = chanceColor(chanceT);
+                  const chancePct = chancePercent(chanceT);
                   const isItemHovered = hover?.title === item.keyword && hover.subtitle === category.title;
                   const isCopied = copiedKeyword === item.keyword;
 
@@ -248,7 +263,14 @@ export function KeywordSunburstChart({ domain, categories }: KeywordSunburstChar
                         className="cursor-pointer transition-[stroke-width,fill] duration-150"
                         onMouseEnter={() => {
                           const { x, y } = polarToCartesian(ITEM_OUTER_RADIUS + 20, itemMid);
-                          setHover({ x, y, title: item.keyword, subtitle: category.title, copyable: true });
+                          setHover({
+                            x,
+                            y,
+                            title: item.keyword,
+                            subtitle: category.title,
+                            copyable: true,
+                            chancePct,
+                          });
                         }}
                         onMouseLeave={() => setHover(null)}
                         onClick={() => handleCopyKeyword(item.keyword)}
@@ -324,6 +346,11 @@ export function KeywordSunburstChart({ domain, categories }: KeywordSunburstChar
             <p className="text-[13px] font-semibold leading-snug text-popover-foreground">{hover.title}</p>
             {hover.subtitle ? (
               <p className="mt-0.5 text-[11px] text-muted-foreground">{hover.subtitle}</p>
+            ) : null}
+            {hover.chancePct !== undefined ? (
+              <p className="mt-1 text-[11px] font-semibold text-foreground">
+                {chanceLabel(hover.chancePct)} chance to rank · ~{hover.chancePct}%
+              </p>
             ) : null}
             {hover.copyable ? (
               <p className="mt-1 flex items-center justify-center gap-1 text-[10.5px] font-medium text-primary">
