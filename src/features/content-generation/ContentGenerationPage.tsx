@@ -6,6 +6,7 @@ import { ArticleContentCard } from "@/features/content-generation/components/Art
 import { ArticleEditChatCard } from "@/features/content-generation/components/ArticleEditChatCard";
 import { DownloadDocumentButton } from "@/features/content-generation/components/DownloadDocumentButton";
 import { FaqCard } from "@/features/content-generation/components/FaqCard";
+import { GeneratingArticleLoader } from "@/features/content-generation/components/GeneratingArticleLoader";
 import { ImagePromptCard } from "@/features/content-generation/components/ImagePromptCard";
 import { PlagiarismCard } from "@/features/content-generation/components/PlagiarismCard";
 import { RatingsCard } from "@/features/content-generation/components/RatingsCard";
@@ -55,6 +56,8 @@ export function ContentGenerationPage() {
           description={error instanceof Error ? error.message : "Please check the URL and try again."}
         />
       ) : null}
+
+      {isPending ? <GeneratingArticleLoader /> : null}
 
       {!content && !isPending && !isError ? (
         <EmptyState
