@@ -1,9 +1,9 @@
-import { ShieldCheck } from 'lucide-react';
+import { Loader2, Lock, Mail } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import type { FormEvent } from 'react';
 import { useNavigate } from 'react-router';
 import sketchBackground from '@/assets/back.svg';
 import { Logo } from '@/components/common/Logo';
-import { GoogleSignInButton } from '@/features/auth/components/GoogleSignInButton';
 import { useAuth } from '@/hooks/useAuth';
 
 const HIGHLIGHTS = [
@@ -76,10 +76,23 @@ function TypewriterHighlights() {
 export function LoginPage() {
   const { signIn } = useAuth();
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSignIn = () => {
-    signIn();
-    navigate('/projects');
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setError(null);
+    setIsSubmitting(true);
+    try {
+      await signIn(email, password);
+      navigate('/projects');
+    } catch {
+      setError('Invalid email or password.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -155,29 +168,59 @@ export function LoginPage() {
             <div className="p-8">
               <h2 className="mb-2 text-[26px] font-bold tracking-tight">Sign in to your workspace</h2>
               <p className="mb-7 text-[15px] leading-relaxed text-muted-foreground">
-                Connect your Google Search Console account to monitor and grow your organic traffic.
+                Use the email and password your admin gave you to access your projects.
               </p>
 
-              <GoogleSignInButton onClick={handleSignIn} />
+              <form className="space-y-4" onSubmit={handleSubmit}>
+                <div>
+                  <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-foreground">
+                    Email
+                  </label>
+                  <div className="relative">
+                    <Mail className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-muted-foreground" />
+                    <input
+                      id="email"
+                      type="email"
+                      required
+                      autoComplete="username"
+                      value={email}
+                      onChange={(event) => setEmail(event.target.value)}
+                      placeholder="you@company.com"
+                      className="w-full rounded-xl border border-border bg-background py-3 pl-10 pr-3.5 text-[15px] outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    />
+                  </div>
+                </div>
 
-              <div className="my-6 flex items-center gap-3.5 text-[11px] font-medium tracking-wider text-muted-foreground">
-                <span className="h-px flex-1 bg-border" />
-                <ShieldCheck className="size-3.5 text-primary" />
-                SECURE OAUTH 2.0
-                <span className="h-px flex-1 bg-border" />
-              </div>
+                <div>
+                  <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-foreground">
+                    Password
+                  </label>
+                  <div className="relative">
+                    <Lock className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-muted-foreground" />
+                    <input
+                      id="password"
+                      type="password"
+                      required
+                      autoComplete="current-password"
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
+                      placeholder="••••••••"
+                      className="w-full rounded-xl border border-border bg-background py-3 pl-10 pr-3.5 text-[15px] outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    />
+                  </div>
+                </div>
 
-              <p className="text-center text-xs leading-relaxed text-muted-foreground">
-                By continuing you agree to our{' '}
-                <a className="font-medium text-primary hover:underline" href="#">
-                  Terms
-                </a>{' '}
-                and{' '}
-                <a className="font-medium text-primary hover:underline" href="#">
-                  Privacy Policy
-                </a>
-                . We only request read access to your Search Console data.
-              </p>
+                {error && <p className="text-sm font-medium text-destructive">{error}</p>}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3.5 text-[15px] font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90 disabled:opacity-60"
+                >
+                  {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+                  Sign in
+                </button>
+              </form>
             </div>
           </div>
         </div>

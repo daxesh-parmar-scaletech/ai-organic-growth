@@ -1,30 +1,31 @@
 import { createContext, useCallback, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
-import { checkLogin, getAuthData, removeAuthData, setAuthData } from '@/services/auth.service';
-
-interface AuthUser {
-  name: string;
-  email: string;
-}
+import {
+  checkLogin,
+  getAuthData,
+  login as loginRequest,
+  removeAuthData,
+  setAuthData,
+} from '@/services/auth.service';
+import type { AuthUser } from '@/services/auth.service';
 
 export interface AuthContextValue {
   isAuthenticated: boolean;
   user: AuthUser | null;
-  signIn: () => void;
+  signIn: (email: string, password: string) => Promise<void>;
   signOut: () => void;
 }
 
 export const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
-const MOCK_USER: AuthUser = { name: 'Admin', email: 'admin@gmail.com' };
-
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(checkLogin);
   const [user, setUser] = useState<AuthUser | null>(() => getAuthData()?.user ?? null);
 
-  const signIn = useCallback(() => {
-    setAuthData({ accessToken: 'mock-access-token', user: MOCK_USER });
-    setUser(MOCK_USER);
+  const signIn = useCallback(async (email: string, password: string) => {
+    const authData = await loginRequest(email, password);
+    setAuthData(authData);
+    setUser(authData.user);
     setIsAuthenticated(true);
   }, []);
 

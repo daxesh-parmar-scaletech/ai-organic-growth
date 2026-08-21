@@ -44,7 +44,7 @@ export function AiChatWidget({ project }: AiChatWidgetProps) {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const sendMessage = useSendChatMessage();
-  const [messages, setMessages] = useState<ChatMessage[]>([getInitialChatMessage(user?.name ?? "there")]);
+  const [messages, setMessages] = useState<ChatMessage[]>([getInitialChatMessage(user?.fullName ?? "there")]);
   const [draft, setDraft] = useState("");
   const [position, setPosition] = useState<Position>(getInitialPosition);
   const dragRef = useRef<{ startX: number; startY: number; originX: number; originY: number; dragged: boolean } | null>(null);

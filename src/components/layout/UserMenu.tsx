@@ -15,10 +15,10 @@ export function UserMenu() {
     <div className="border-t border-border p-3">
       <div className="flex items-center gap-2.5 px-2 py-1.5">
         <span className="flex size-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-background">
-          {user?.name?.charAt(0) ?? "?"}
+          {user?.fullName?.charAt(0) ?? "?"}
         </span>
         <span className="min-w-0 flex-1">
-          <span className="block truncate text-[13px] font-semibold">{user?.name}</span>
+          <span className="block truncate text-[13px] font-semibold">{user?.fullName}</span>
           <span className="block truncate text-[11.5px] text-muted-foreground">Owner</span>
         </span>
         <button

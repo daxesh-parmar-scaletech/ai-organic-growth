@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router";
 import { Logo } from "@/components/common/Logo";
 import { SidebarNavItem } from "@/components/layout/SidebarNavItem";
 import { UserMenu } from "@/components/layout/UserMenu";
+import { useAuth } from "@/hooks/useAuth";
 import { NAV_ITEMS } from "@/lib/constants";
 import type { Project } from "@/types/project";
 
@@ -13,6 +14,9 @@ interface SidebarProps {
 export function Sidebar({ project }: SidebarProps) {
   const location = useLocation();
   const activeModuleId = location.pathname.split("/")[3];
+  const { user } = useAuth();
+  const isAdmin = user?.roleName === "Admin";
+  const navItems = NAV_ITEMS.filter((item) => item.id !== "settings" || isAdmin);
 
   return (
     <aside className="flex h-full w-[246px] shrink-0 flex-col border-r border-border bg-card">
@@ -44,7 +48,7 @@ export function Sidebar({ project }: SidebarProps) {
           WORKSPACE
         </div>
         <div className="flex flex-col gap-1">
-          {NAV_ITEMS.map((item) => (
+          {navItems.map((item) => (
             <SidebarNavItem
               key={item.id}
               item={item}
