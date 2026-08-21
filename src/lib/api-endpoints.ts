@@ -32,6 +32,8 @@ export const API_CONFIG = {
   coreWebVitals: "core-web-vitals",
   builtWith: "built-with",
   bestKeywords: "best-keywords",
+  users: "users",
+  roles: "roles",
 };
 
 /**
