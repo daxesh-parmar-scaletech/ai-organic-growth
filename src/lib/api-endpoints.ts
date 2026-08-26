@@ -34,6 +34,9 @@ export const API_CONFIG = {
   bestKeywords: "best-keywords",
   users: "users",
   roles: "roles",
+  activitySummary: "activity/summary",
+  activityLogs: "activity/logs",
+  activityErrors: "activity/errors",
 };
 
 /**

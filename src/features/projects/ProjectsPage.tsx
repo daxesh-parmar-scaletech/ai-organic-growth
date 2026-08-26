@@ -1,4 +1,4 @@
-import { Settings } from 'lucide-react';
+import { Activity, Settings } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
@@ -71,6 +71,15 @@ export function ProjectsPage() {
       <div className="flex h-16 items-center justify-between border-b border-border bg-card px-7 shadow-[0_1px_2px_rgba(14,23,38,0.04)]">
         <Logo iconSize={36} />
         <div className="flex items-center gap-3.5">
+          {isAdmin ? (
+            <Link
+              to="/admin/user-monitoring"
+              title="User Monitoring"
+              className="flex items-center justify-center rounded-[10px] border border-border p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            >
+              <Activity className="size-[15px]" />
+            </Link>
+          ) : null}
           {isAdmin && settingsTargetProjectId ? (
             <Link
               to={`/app/${settingsTargetProjectId}/settings`}

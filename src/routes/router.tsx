@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router';
+import { AdminRoute } from '@/components/common/AdminRoute';
 import { ProtectedRoute } from '@/components/common/ProtectedRoute';
 import { RouteErrorBoundary } from '@/components/common/RouteErrorBoundary';
 import { AppLayout } from '@/layouts/AppLayout';
@@ -64,6 +65,11 @@ const ArticleTitleGeneratorPage = lazy(() =>
 const BestKeywordsPage = lazy(() =>
   import('@/features/free-tools/BestKeywordsPage').then((m) => ({ default: m.BestKeywordsPage }))
 );
+const UserMonitoringPage = lazy(() =>
+  import('@/features/user-monitoring/UserMonitoringPage').then((m) => ({
+    default: m.UserMonitoringPage,
+  }))
+);
 
 export const router = createBrowserRouter([
   {
@@ -83,6 +89,17 @@ export const router = createBrowserRouter([
         errorElement: <RouteErrorBoundary />,
         children: [
           { path: '/projects', element: <ProjectsPage />, errorElement: <RouteErrorBoundary /> },
+          {
+            element: <AdminRoute />,
+            errorElement: <RouteErrorBoundary />,
+            children: [
+              {
+                path: '/admin/user-monitoring',
+                element: <UserMonitoringPage />,
+                errorElement: <RouteErrorBoundary />,
+              },
+            ],
+          },
           {
             path: '/app/:projectId',
             element: <AppLayout />,
