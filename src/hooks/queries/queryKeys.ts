@@ -14,4 +14,7 @@ export const queryKeys = {
   contentGeneration: (projectId: string) => ["projects", projectId, "content-generation"] as const,
   users: () => ["users"] as const,
   roles: () => ["roles"] as const,
+  activitySummary: () => ["activity", "summary"] as const,
+  activityLogs: (params: object) => ["activity", "logs", params] as const,
+  activityErrors: () => ["activity", "errors"] as const,
 };
