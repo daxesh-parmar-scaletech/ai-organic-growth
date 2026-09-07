@@ -1,5 +1,6 @@
-import { createContext, useCallback, useMemo, useState } from 'react';
+import { createContext, useCallback, useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
+import posthog from '@/lib/posthog';
 import {
   checkLogin,
   getAuthData,
@@ -22,17 +23,33 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(checkLogin);
   const [user, setUser] = useState<AuthUser | null>(() => getAuthData()?.user ?? null);
 
+  useEffect(() => {
+    if (!user) return;
+    posthog.identify(user.id, {
+      email: user.email,
+      name: user.fullName,
+      role: user.roleName,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const signIn = useCallback(async (email: string, password: string) => {
     const authData = await loginRequest(email, password);
     setAuthData(authData);
     setUser(authData.user);
     setIsAuthenticated(true);
+    posthog.identify(authData.user.id, {
+      email: authData.user.email,
+      name: authData.user.fullName,
+      role: authData.user.roleName,
+    });
   }, []);
 
   const signOut = useCallback(() => {
     removeAuthData();
     setUser(null);
     setIsAuthenticated(false);
+    posthog.reset();
   }, []);
 
   const value = useMemo<AuthContextValue>(
