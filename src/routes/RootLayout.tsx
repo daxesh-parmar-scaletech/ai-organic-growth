@@ -12,7 +12,7 @@ export function RootLayout() {
   return (
     <>
       <ErrorHandler />
-      <ToastContainer position="bottom-right" autoClose={2500} hideProgressBar closeOnClick draggable pauseOnHover />
+      <ToastContainer position="bottom-right" limit={3} autoClose={2500} hideProgressBar closeOnClick draggable pauseOnHover />
       <Outlet />
     </>
   );

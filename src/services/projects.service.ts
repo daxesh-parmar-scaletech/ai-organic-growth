@@ -20,8 +20,7 @@ export async function getProjects(): Promise<Project[]> {
 
 export async function getProject(projectId: string): Promise<Project | undefined> {
   if (USE_MOCKS) return mockDelay(inMemoryProjects.find((project) => project.id === projectId));
-  const projects = await httpService.get<Project[]>(API_CONFIG.projects);
-  return projects.find((project) => project.id === projectId);
+  return httpService.get<Project>(API_CONFIG.projectById(projectId));
 }
 
 export async function connectProject(projectId: string): Promise<Project> {
