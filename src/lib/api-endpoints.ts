@@ -6,6 +6,7 @@
  */
 export const API_CONFIG = {
   projects: "projects",
+  projectById: (projectId: string) => `projects/${projectId}`,
   projectConnect: (projectId: string) => `projects/${projectId}/connect`,
   keywords: (projectId: string) => `projects/${projectId}/keywords`,
   pages: (projectId: string) => `projects/${projectId}/pages`,

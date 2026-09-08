@@ -15,6 +15,7 @@ export function initPostHog(): void {
     person_profiles: "identified_only",
     capture_pageview: true,
     capture_pageleave: true,
+    capture_exceptions: true,
     session_recording: {
       maskAllInputs: true,
     },

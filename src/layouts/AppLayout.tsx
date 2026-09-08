@@ -13,9 +13,16 @@ export function AppLayout() {
 
   if (isLoading) return <PageLoader label="Loading workspace…" />;
   if (isError) {
+    // Keep the app shell mounted and contain the failure to the content area,
+    // so one failed project fetch doesn't blank the whole workspace.
     return (
-      <div className="p-8">
-        <QueryErrorFallback message="We couldn't load this workspace." onRetry={() => refetch()} />
+      <div className="flex h-screen overflow-hidden">
+        <main className="flex min-w-0 flex-1 flex-col">
+          <Topbar />
+          <div className="flex-1 overflow-y-auto p-7 pb-16">
+            <QueryErrorFallback message="We couldn't load this workspace." onRetry={() => refetch()} />
+          </div>
+        </main>
       </div>
     );
   }
