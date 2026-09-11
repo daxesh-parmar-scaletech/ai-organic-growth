@@ -1,15 +1,12 @@
 import { useState } from "react";
-import { ArrowLeft, Loader2, Search } from "lucide-react";
-import { Link } from "react-router";
+import { Loader2, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SectionCard } from "@/components/common/SectionCard";
-import { useActiveProject } from "@/hooks/useActiveProject";
 import { useCoreWebVitals } from "@/hooks/queries/useCoreWebVitals";
 import { CoreWebVitalsCard } from "@/features/dashboard/components/CoreWebVitalsCard";
 
 export function CoreWebVitalsPage() {
-  const project = useActiveProject();
   const [pageUrl, setPageUrl] = useState("");
   const checkMutation = useCoreWebVitals();
   const canSubmit = pageUrl.trim().length > 0;
@@ -21,18 +18,11 @@ export function CoreWebVitalsPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <Link
-        to={`/app/${project.id}/free-tools`}
-        className="flex w-fit items-center gap-1 text-sm font-semibold text-muted-foreground hover:text-foreground"
-      >
-        <ArrowLeft className="size-4" />
-        Back to Tools
-      </Link>
 
       <SectionCard title="Check Page Speed Insights">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
           <div className="flex flex-1 flex-col gap-1">
-            <label className="text-[13px] font-semibold text-foreground">Page URL</label>
+            <label className="text-sm font-semibold text-foreground">Page URL</label>
             <Input
               value={pageUrl}
               onChange={(e) => setPageUrl(e.target.value)}
@@ -46,7 +36,7 @@ export function CoreWebVitalsPage() {
             Check
           </Button>
         </div>
-        <p className="mt-3 text-[12.5px] text-muted-foreground">
+        <p className="mt-3 text-xs text-muted-foreground">
           Powered by Google PageSpeed Insights — works for any public URL, no login required.
         </p>
       </SectionCard>

@@ -23,14 +23,14 @@ export function ConnectConsentDialog({ project, onCancel, onAllow }: ConnectCons
           <span className="mb-4 flex size-9 items-center justify-center rounded-full bg-[#4285F4]/10 text-[#4285F4]">
             <ScanSearch className="size-5" />
           </span>
-          <div className="text-[19px] leading-snug font-semibold text-foreground">
+          <div className="text-lg leading-snug font-semibold text-foreground">
             Ranky AI wants to access your Google Account
           </div>
           <div className="mt-4 flex w-fit items-center gap-2.5 rounded-full border border-border px-3 py-2">
-            <span className="flex size-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+            <span className="flex size-6 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
               A
             </span>
-            <span className="text-[13px] text-muted-foreground">admin@gmail.com</span>
+            <span className="text-sm text-muted-foreground">admin@gmail.com</span>
           </div>
         </div>
         <div className="px-7 py-5.5">
@@ -41,7 +41,7 @@ export function ConnectConsentDialog({ project, onCancel, onAllow }: ConnectCons
             {PERMISSIONS.map((permission) => (
               <div key={permission.text} className="flex gap-3">
                 <permission.icon className="mt-0.5 size-[18px] shrink-0 text-muted-foreground" />
-                <span className="text-[13.5px] leading-relaxed text-muted-foreground">{permission.text}</span>
+                <span className="text-sm leading-relaxed text-muted-foreground">{permission.text}</span>
               </div>
             ))}
           </div>

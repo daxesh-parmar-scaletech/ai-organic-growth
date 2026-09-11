@@ -128,7 +128,7 @@ export function AiChatWidget({ project }: AiChatWidgetProps) {
             </span>
             <div>
               <SheetTitle>Ranky AI</SheetTitle>
-              <div className="flex items-center gap-1.5 text-xs font-semibold text-primary">
+              <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                 <span className="size-1.5 rounded-full bg-primary" />
                 Online · SEO Assistant
               </div>

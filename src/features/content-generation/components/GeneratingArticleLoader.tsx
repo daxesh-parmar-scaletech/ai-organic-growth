@@ -29,7 +29,7 @@ export function GeneratingArticleLoader() {
         <div className="relative flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg">
           <Bot className="size-7 animate-bounce" />
         </div>
-        <Sparkles className="absolute -right-1 -top-1 size-5 animate-pulse text-primary" />
+        <Sparkles className="absolute -right-1 -top-1 size-5 text-muted-foreground" />
       </div>
 
       <div className="flex items-end gap-1" aria-hidden="true">

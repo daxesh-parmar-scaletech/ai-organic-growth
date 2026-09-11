@@ -30,8 +30,8 @@ const ChatMessageBubble = ({ message }: { message: ChatMessage }) => {
           <div className="mt-3 flex flex-col gap-2 border-t border-black/10 pt-3">
             {message.actions.map((action) => (
               <div key={action} className="flex items-start gap-2">
-                <Check className="mt-0.5 size-4 shrink-0 text-primary" strokeWidth={2.4} />
-                <span className="text-[13px] leading-relaxed">{action}</span>
+                <Check className="mt-0.5 size-4 shrink-0 text-positive" strokeWidth={2.4} />
+                <span className="text-sm leading-relaxed">{action}</span>
               </div>
             ))}
           </div>

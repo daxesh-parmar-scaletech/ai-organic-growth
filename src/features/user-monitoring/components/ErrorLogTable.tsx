@@ -69,7 +69,7 @@ export function ErrorLogTable({ errors }: ErrorLogTableProps) {
                     {error.method} {error.path}
                   </td>
                   <td className="px-4 py-3">
-                    <span className="rounded-full bg-destructive/10 px-2 py-0.5 text-xs font-bold text-destructive">
+                    <span className="rounded-full bg-destructive/10 px-2 py-0.5 text-xs font-semibold text-destructive">
                       {error.statusCode ?? "—"}
                     </span>
                   </td>

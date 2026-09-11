@@ -46,7 +46,7 @@ export function PageAnalyzerCard({ projectId }: { projectId: string }) {
 
   return (
     <SectionCard title="Analyze any page">
-      <p className="-mt-2 mb-3.5 text-[13px] text-muted-foreground">
+      <p className="-mt-2 mb-3.5 text-sm text-muted-foreground">
         Paste a page URL from this property to check its Google indexing status
         and get copy-paste-ready fixes. Optionally add a competitor's page to
         see why it might be outranking yours.
@@ -60,7 +60,7 @@ export function PageAnalyzerCard({ projectId }: { projectId: string }) {
             placeholder="https://yoursite.com/some-page"
             className="h-9 flex-1"
           />
-          <span className="shrink-0 text-xs font-bold text-muted-foreground sm:px-1">
+          <span className="shrink-0 text-xs font-semibold text-muted-foreground sm:px-1">
             VS
           </span>
           <Input
@@ -117,7 +117,7 @@ export function PageAnalyzerCard({ projectId }: { projectId: string }) {
       ) : null}
 
       {wasBlocked && !showManualHtml ? (
-        <p className="mt-4 text-[13px] leading-relaxed text-destructive">
+        <p className="mt-4 text-sm leading-relaxed text-destructive">
           We couldn't read your page's live HTML (likely bot protection blocking
           our request). Use "Paste page HTML manually" above and re-analyze for
           an exact diagnosis.

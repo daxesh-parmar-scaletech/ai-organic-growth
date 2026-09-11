@@ -49,7 +49,7 @@ export function BestKeywordsPage() {
       <SectionCard title="Analyze a website">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
           <div className="flex flex-1 flex-col gap-1">
-            <label className="text-[13px] font-semibold text-foreground">Website URL</label>
+            <label className="text-sm font-semibold text-foreground">Website URL</label>
             <Input
               value={url}
               onChange={(e) => setUrl(e.target.value)}
@@ -70,12 +70,12 @@ export function BestKeywordsPage() {
           </Button>
         </div>
         {showValidationError ? (
-          <p className="mt-2 text-[12.5px] text-destructive">
+          <p className="mt-2 text-xs text-destructive">
             Enter a valid website URL (e.g. example.com or https://example.com).
           </p>
         ) : null}
         {keywordsMutation.isPending ? (
-          <p className="mt-2 text-[12.5px] text-muted-foreground">
+          <p className="mt-2 text-xs text-muted-foreground">
             Analyzing the page and researching keywords — this can take a few seconds…
           </p>
         ) : null}
@@ -87,11 +87,11 @@ export function BestKeywordsPage() {
 
       {result ? (
         <SectionCard title={`Keywords ${result.domain} has the best chance to rank for`}>
-          <p className="-mt-2 mb-1 text-[12.5px] text-muted-foreground">
+          <p className="-mt-2 mb-1 text-xs text-muted-foreground">
             {result.categories.length} topic groups ·{" "}
             {result.categories.reduce((sum, category) => sum + category.items.length, 0)} keywords
           </p>
-          <p className="mb-3 text-[11.5px] text-muted-foreground">
+          <p className="mb-3 text-2xs text-muted-foreground">
             AI-suggested ranking opportunities based on this page's actual content — not confirmed Google rankings.
           </p>
           <KeywordSunburstChart domain={result.domain} categories={result.categories} />

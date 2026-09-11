@@ -1,5 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { Link, useNavigate } from "react-router";
+import { AppHeader } from "@/components/layout/AppHeader";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { Logo } from "@/components/common/Logo";
 import { PageLoader } from "@/components/common/PageLoader";
 import { QueryErrorFallback } from "@/components/common/QueryErrorFallback";
@@ -29,37 +31,34 @@ export function UserMonitoringPage() {
 
   return (
     <div className="min-h-screen">
-      <div className="flex h-16 items-center justify-between border-b border-border bg-card px-7 shadow-[0_1px_2px_rgba(14,23,38,0.04)]">
-        <div className="flex items-center gap-4">
-          <Logo iconSize={36} />
-          <Link
-            to="/projects"
-            className="flex items-center gap-1.5 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
-          >
-            <ArrowLeft className="size-[15px]" />
-            Projects
-          </Link>
-        </div>
-        <div className="flex items-center gap-3.5">
-          <span className="text-[13px] text-muted-foreground">{user?.fullName}</span>
-          <span className="flex size-[34px] items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-            {user?.fullName?.charAt(0) ?? "?"}
-          </span>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleSignOut}
-            className="border-primary/30 text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-primary/5 hover:text-primary"
-          >
-            Sign out
-          </Button>
-        </div>
-      </div>
+      <AppHeader
+        left={
+          <>
+            <Logo iconSize={30} />
+            <Link
+              to="/projects"
+              className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <ArrowLeft className="size-3.5" aria-hidden="true" />
+              Projects
+            </Link>
+          </>
+        }
+        actions={
+          <>
+            <ThemeToggle />
+            <span className="hidden text-sm text-muted-foreground sm:inline">{user?.fullName}</span>
+            <Button variant="outline" size="sm" onClick={handleSignOut}>
+              Sign out
+            </Button>
+          </>
+        }
+      />
 
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-8 py-8">
         <div>
-          <h1 className="mb-2 text-[26px] font-extrabold tracking-tight">User Monitoring</h1>
-          <p className="text-[15px] text-muted-foreground">
+          <h1 className="mb-2 text-2xl font-semibold tracking-tight">User Monitoring</h1>
+          <p className="text-md text-muted-foreground">
             How people are actually using the platform — activity, engagement and errors, at a glance.
           </p>
         </div>
@@ -84,12 +83,12 @@ export function UserMonitoringPage() {
             <UsageOverTimeChart logs={logsQuery.data.items} />
 
             <div>
-              <h2 className="mb-3 text-lg font-bold text-foreground">Activity by user</h2>
+              <h2 className="mb-3 text-lg font-semibold text-foreground">Activity by user</h2>
               <UserActivityTable summaries={summaryQuery.data} />
             </div>
 
             <div>
-              <h2 className="mb-3 text-lg font-bold text-foreground">Recent errors</h2>
+              <h2 className="mb-3 text-lg font-semibold text-foreground">Recent errors</h2>
               <ErrorLogTable errors={errorsQuery.data} />
             </div>
           </>

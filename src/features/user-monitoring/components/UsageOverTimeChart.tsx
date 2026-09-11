@@ -1,5 +1,7 @@
 import { useMemo } from "react";
-import { TrendAreaChart } from "@/components/charts/TrendAreaChart";
+import { AlertTriangle } from "lucide-react";
+import { StackedTrendChart } from "@/components/charts/StackedTrendChart";
+import { SectionCard } from "@/components/common/SectionCard";
 import type { ActivityLog } from "@/types/activity";
 
 interface UsageOverTimeChartProps {
@@ -28,24 +30,18 @@ export function UsageOverTimeChart({ logs }: UsageOverTimeChartProps) {
     };
   }, [logs]);
 
-  if (labels.length === 0) {
-    return (
-      <div className="rounded-2xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
-        Not enough activity yet to chart usage over time.
-      </div>
-    );
-  }
-
   return (
-    <div className="rounded-2xl border border-border bg-card p-4">
-      <p className="mb-2 text-sm font-semibold text-foreground">Requests over time</p>
-      <TrendAreaChart
+    <SectionCard title="Requests over time">
+      <StackedTrendChart
         labels={labels}
-        series={[
-          { label: "Requests", data: requestSeries, color: "#0B6B3C" },
-          { label: "Errors", data: errorSeries, color: "#DC2626" },
+        panels={[
+          { label: "Requests", data: requestSeries },
+          // Errors is a status series, not a second categorical one, so it
+          // takes the reserved negative tone plus an icon.
+          { label: "Errors", data: errorSeries, tone: "negative", icon: AlertTriangle },
         ]}
+        emptyMessage="Not enough activity yet to chart usage over time."
       />
-    </div>
+    </SectionCard>
   );
 }

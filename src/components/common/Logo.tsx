@@ -12,7 +12,7 @@ interface LogoProps {
 export function Logo({
   iconSize = 32,
   showText = true,
-  textClassName = "text-[19px] text-primary",
+  textClassName = "text-lg text-foreground",
   className = "",
   variant = "badge",
 }: LogoProps) {
@@ -29,7 +29,7 @@ export function Logo({
         className={`shrink-0 object-contain ${variant === "badge" ? "rounded-[9px]" : ""}`}
       />
       {showText && (
-        <span className={`font-extrabold uppercase tracking-tight ${textClassName}`}>Ranky AI</span>
+        <span className={`font-semibold uppercase tracking-tight ${textClassName}`}>Ranky AI</span>
       )}
     </div>
   );
